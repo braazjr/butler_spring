@@ -1,11 +1,14 @@
 package br.com.onsmarttech.butler.models;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import org.hibernate.validator.constraints.NotBlank;
-
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
 
 /**
  * The persistent class for the construtora database table.
@@ -18,15 +21,15 @@ public class Construtora extends DadosGenericos implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column( nullable = false, length = 255)
-	@NotBlank
+	@NotNull
 	private String cnpj;
 
 	@Column(nullable = false, length = 30)
-	@NotBlank
+	@NotNull
 	private String nomeFantasia;
 
 	@Column(nullable = false, length = 30)
-	@NotBlank
+	@NotNull
 	private String nomeSocial;
 
 	// bi-directional many-to-one association to Condominio

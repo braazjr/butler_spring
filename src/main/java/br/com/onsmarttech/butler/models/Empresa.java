@@ -1,12 +1,13 @@
 package br.com.onsmarttech.butler.models;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotBlank;
-
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * The persistent class for the empresa database table.
@@ -19,17 +20,17 @@ public class Empresa extends DadosGenericos implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Column(length = 18, nullable = false)
-	@NotBlank
+	@NotNull
 	@Size(min = 18, max = 18)
 	private String cnpj;
 
 	@Column(nullable = false, length = 30)
-	@NotBlank
+	@NotNull
 	@Size(min = 5, max = 30)
 	private String nomeFantasia;
 
 	@Column(nullable = false, length = 30)
-	@NotBlank
+	@NotNull
 	@Size(min = 5, max = 30)
 	private String nomeSocial;
 

@@ -12,10 +12,10 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -30,39 +30,39 @@ public class DadosGenericos implements Serializable {
 	private Boolean ativo;
 	
 	@Column(nullable = false, length = 30)
-	@NotBlank
+	@NotNull
 	@Size(min = 5, max = 30)
 	private String bairro;
 
 	@Column(nullable = false, length = 9)
-	@NotBlank
+	@NotNull
 	@Size(min = 9, max = 9)
 	private String cep;
 
 	@Column(nullable = false, length = 30)
-	@NotBlank
+	@NotNull
 	@Size(min = 5, max = 30)
 	private String cidade;
 	private String complemento;
 
 	@Column(nullable = false, length = 50)
-	@NotBlank
+	@NotNull
 	@Size(min = 5, max = 50)
 	private String email;
 
 	@Column(nullable = false, length = 20)
-	@NotBlank
+	@NotNull
 	@Size(min = 5, max = 20)
 	private String estado;
 	private Integer numero;
 
 	@Column(nullable = false, length = 50)
-	@NotBlank
+	@NotNull
 	@Size(min = 5, max = 50)
 	private String rua;
 
 	@Column(nullable = false, length = 13)
-	@NotBlank
+	@NotNull
 	@Size(min = 13, max = 13)
 	private String telefone;
 
