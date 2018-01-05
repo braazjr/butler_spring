@@ -17,37 +17,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.onsmarttech.butler.models.Empresa;
-import br.com.onsmarttech.butler.repositories.EmpresaRepository;
-import br.com.onsmarttech.butler.service.EmpresaService;
+import br.com.onsmarttech.butler.models.Bloco;
+import br.com.onsmarttech.butler.repositories.BlocoRepository;
+import br.com.onsmarttech.butler.service.BlocoService;
 
 @RestController
-@RequestMapping("/empresas")
-public class EmpresaController {
+@RequestMapping("/blocos")
+public class BlocoController {
 
 	@Autowired
-	private EmpresaRepository repository;
+	private BlocoRepository repository;
 
 	@Autowired
-	private EmpresaService service;
+	private BlocoService service;
 
 	@GetMapping
-	public Page<Empresa> listaEmpresas(Pageable pageable) {
+	public Page<Bloco> listaBlocos(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> buscarEmpresaPorId(@PathVariable Long id) {
-		Empresa empresa = repository.findOne(id);
+	public ResponseEntity<?> buscarBlocoPorId(@PathVariable Long id) {
+		Bloco bloco = repository.findOne(id);
 
-		return empresa != null ? ResponseEntity.ok(empresa) : ResponseEntity.notFound().build();
+		return bloco != null ? ResponseEntity.ok(bloco) : ResponseEntity.notFound().build();
 	}
 
 	@PostMapping
-	public ResponseEntity<?> salvarEmpresa(@Valid @RequestBody Empresa empresa) {
-		Empresa empresaSalva = repository.save(empresa);
+	public ResponseEntity<?> salvarBloco(@Valid @RequestBody Bloco bloco) {
+		Bloco blocoSalva = repository.save(bloco);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(empresaSalva);
+		return ResponseEntity.status(HttpStatus.CREATED).body(blocoSalva);
 	}
 
 	@DeleteMapping("/{id}")
@@ -57,9 +57,9 @@ public class EmpresaController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> salvarEmpresa(@PathVariable Long id, @Valid @RequestBody Empresa empresa) {
-		Empresa empresaSalva = service.atualizar(id, empresa);
+	public ResponseEntity<?> salvarBloco(@PathVariable Long id, @Valid @RequestBody Bloco bloco) {
+		Bloco blocoSalva = service.atualizar(id, bloco);
 
-		return ResponseEntity.ok(empresaSalva);
+		return ResponseEntity.ok(blocoSalva);
 	}
 }

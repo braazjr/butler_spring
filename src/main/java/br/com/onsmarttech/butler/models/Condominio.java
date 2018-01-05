@@ -10,27 +10,31 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The persistent class for the condominio database table.
  * 
  */
 @Entity
-//@Table(schema = "base")
+// @Table(schema = "base")
 public class Condominio extends DadosGenericos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(nullable = false, length = 30)
+	@Column(length = 30)
 	@NotNull
 	private String nome;
 
 	// bi-directional many-to-one association to Bloco
+	@JsonIgnore
 	@OneToMany(mappedBy = "condominio")
 	private List<Bloco> blocos;
 
 	// bi-directional many-to-one association to Construtora
 	@ManyToOne
-	@JoinColumn(name = "id_condominio", nullable = false)
+	@JoinColumn(name = "id_condominio")
+	@NotNull
 	private Construtora construtora;
 
 	public Condominio() {

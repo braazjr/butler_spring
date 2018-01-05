@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -20,16 +21,18 @@ public class Apartamento implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique = true, nullable = false)
+	@Column(unique = true)
 	private Long id;
 
-	@Column(nullable = false, length = 5)
+	@Column(length = 5)
+	@NotNull
 	private String numero;
 	private boolean ativo;
 
 	// bi-directional many-to-one association to Bloco
 	@ManyToOne
-	@JoinColumn(name = "id_bloco", nullable = false)
+	@JoinColumn(name = "id_bloco")
+	@NotNull
 	private Bloco bloco;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -88,6 +91,11 @@ public class Apartamento implements Serializable {
 
 	public void setDataHoraModificacao(Date dataHoraModificacao) {
 		this.dataHoraModificacao = dataHoraModificacao;
+	}
+
+	@PrePersist
+	private void initAtivo() {
+		ativo = true;
 	}
 
 	@Override

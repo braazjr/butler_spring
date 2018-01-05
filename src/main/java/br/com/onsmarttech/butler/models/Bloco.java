@@ -2,8 +2,11 @@ package br.com.onsmarttech.butler.models;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
 import java.util.List;
@@ -13,7 +16,7 @@ import java.util.List;
  * 
  */
 @Entity
-//@Table(schema = "base")
+// @Table(schema = "base")
 public class Bloco implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -22,21 +25,22 @@ public class Bloco implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique = true, nullable = false)
 	private Long id;
-
-	@Column(nullable = false)
 	private Boolean ativo;
 
 	@Column(length = 15)
+	@NotNull
 	private String nome;
 	private Integer numero;
 
 	// bi-directional many-to-one association to Apartamento
 	@OneToMany(mappedBy = "bloco")
+	@JsonIgnore
 	private List<Apartamento> apartamentos;
 
 	// bi-directional many-to-one association to Condominio
 	@ManyToOne
-	@JoinColumn(name = "id_condominio", nullable = false)
+	@JoinColumn(name = "id_condominio")
+	@NotNull
 	private Condominio condominio;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -125,6 +129,11 @@ public class Bloco implements Serializable {
 
 	public void setDataHoraModificacao(Date dataHoraModificacao) {
 		this.dataHoraModificacao = dataHoraModificacao;
+	}
+
+	@PrePersist
+	private void initAtivo() {
+		ativo = true;
 	}
 
 	@Override

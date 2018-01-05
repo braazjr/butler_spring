@@ -9,6 +9,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The persistent class for the empresa database table.
  * 
@@ -19,22 +21,23 @@ public class Empresa extends DadosGenericos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(length = 18, nullable = false)
+	@Column(length = 18, nullable = false, unique = true)
 	@NotNull
 	@Size(min = 18, max = 18)
 	private String cnpj;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 30, unique = true)
 	@NotNull
 	@Size(min = 5, max = 30)
 	private String nomeFantasia;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false, length = 30, unique = true)
 	@NotNull
 	@Size(min = 5, max = 30)
 	private String nomeSocial;
 
 	// bi-directional many-to-one association to Construtora
+	@JsonIgnore
 	@OneToMany(mappedBy = "empresa")
 	private List<Construtora> construtoras;
 

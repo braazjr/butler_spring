@@ -10,35 +10,39 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * The persistent class for the construtora database table.
  * 
  */
 @Entity
-//@Table(schema = "base")
+// @Table(schema = "base")
 public class Construtora extends DadosGenericos implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column( nullable = false, length = 255)
+	@Column(length = 255, unique = true)
 	@NotNull
 	private String cnpj;
 
-	@Column(nullable = false, length = 30)
+	@Column(length = 30, unique = true)
 	@NotNull
 	private String nomeFantasia;
 
-	@Column(nullable = false, length = 30)
+	@Column(length = 30, unique = true)
 	@NotNull
 	private String nomeSocial;
 
 	// bi-directional many-to-one association to Condominio
+	@JsonIgnore
 	@OneToMany(mappedBy = "construtora")
 	private List<Condominio> condominios;
 
 	// bi-directional many-to-one association to Empresa
 	@ManyToOne
-	@JoinColumn(name = "cnpj_empresa", nullable = false)
+	@JoinColumn(name = "id_empresa")
+	@NotNull
 	private Empresa empresa;
 
 	public Construtora() {

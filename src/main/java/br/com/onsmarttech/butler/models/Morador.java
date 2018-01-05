@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -18,22 +19,25 @@ public class Morador implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(unique = true, nullable = false, length = 255)
+	@Column(unique = true, length = 255)
+	@NotNull
 	private String documento;
-
-	@Column(nullable = false)
 	private Boolean ativo;
 
-	@Column(nullable = false, length = 14)
+	@Column(length = 14)
+	@NotNull
 	private String celular;
 
-	@Column(nullable = false, length = 30)
+	@Column(length = 30)
+	@NotNull
 	private String email;
 
-	@Column(nullable = false, length = 30)
+	@Column(length = 30)
+	@NotNull
 	private String nome;
 
-	@Column(nullable = false, length = 14)
+	@Column(length = 14)
+	@NotNull
 	private String telefone;
 
 	@Column(length = 8)
@@ -44,14 +48,17 @@ public class Morador implements Serializable {
 	private String parentesco;
 
 	@Enumerated
+	@NotNull
 	private TipoDocumento tipodocumento;
 
 	@Enumerated
+	@NotNull
 	private TipoMorador tipomorador;
 
 	// bi-directional many-to-one association to Bloco
 	@ManyToOne
-	@JoinColumn(name = "id_bloco", nullable = false)
+	@JoinColumn(name = "id_bloco")
+	@NotNull
 	private Bloco bloco;
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -174,6 +181,11 @@ public class Morador implements Serializable {
 
 	public void setDataHoraModificacao(Date dataHoraModificacao) {
 		this.dataHoraModificacao = dataHoraModificacao;
+	}
+	
+	@PrePersist
+	private void initAtivo() {
+		ativo = true;
 	}
 
 	@Override

@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.PrePersist;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -178,5 +179,10 @@ public class DadosGenericos implements Serializable {
 
 	public void setDataHoraModificacao(Date dataHoraModificacao) {
 		this.dataHoraModificacao = dataHoraModificacao;
+	}
+	
+	@PrePersist
+	private void initAtivo() {
+		ativo = true;
 	}
 }

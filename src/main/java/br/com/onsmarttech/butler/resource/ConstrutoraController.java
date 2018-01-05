@@ -17,37 +17,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.onsmarttech.butler.models.Empresa;
-import br.com.onsmarttech.butler.repositories.EmpresaRepository;
-import br.com.onsmarttech.butler.service.EmpresaService;
+import br.com.onsmarttech.butler.models.Construtora;
+import br.com.onsmarttech.butler.repositories.ConstrutoraRepository;
+import br.com.onsmarttech.butler.service.ConstrutoraService;
 
 @RestController
-@RequestMapping("/empresas")
-public class EmpresaController {
+@RequestMapping("/construtoras")
+public class ConstrutoraController {
 
 	@Autowired
-	private EmpresaRepository repository;
+	private ConstrutoraRepository repository;
 
 	@Autowired
-	private EmpresaService service;
+	private ConstrutoraService service;
 
 	@GetMapping
-	public Page<Empresa> listaEmpresas(Pageable pageable) {
+	public Page<Construtora> listaConstrutoras(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> buscarEmpresaPorId(@PathVariable Long id) {
-		Empresa empresa = repository.findOne(id);
+	public ResponseEntity<?> buscarConstrutoraPorId(@PathVariable Long id) {
+		Construtora construtora = repository.findOne(id);
 
-		return empresa != null ? ResponseEntity.ok(empresa) : ResponseEntity.notFound().build();
+		return construtora != null ? ResponseEntity.ok(construtora) : ResponseEntity.notFound().build();
 	}
 
 	@PostMapping
-	public ResponseEntity<?> salvarEmpresa(@Valid @RequestBody Empresa empresa) {
-		Empresa empresaSalva = repository.save(empresa);
+	public ResponseEntity<?> salvarConstrutora(@Valid @RequestBody Construtora construtora) {
+		Construtora construtoraSalva = repository.save(construtora);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(empresaSalva);
+		return ResponseEntity.status(HttpStatus.CREATED).body(construtoraSalva);
 	}
 
 	@DeleteMapping("/{id}")
@@ -57,9 +57,9 @@ public class EmpresaController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> salvarEmpresa(@PathVariable Long id, @Valid @RequestBody Empresa empresa) {
-		Empresa empresaSalva = service.atualizar(id, empresa);
+	public ResponseEntity<?> salvarConstrutora(@PathVariable Long id, @Valid @RequestBody Construtora construtora) {
+		Construtora construtoraSalva = service.atualizar(id, construtora);
 
-		return ResponseEntity.ok(empresaSalva);
+		return ResponseEntity.ok(construtoraSalva);
 	}
 }

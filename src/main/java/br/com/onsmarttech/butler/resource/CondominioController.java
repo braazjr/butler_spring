@@ -17,37 +17,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.onsmarttech.butler.models.Empresa;
-import br.com.onsmarttech.butler.repositories.EmpresaRepository;
-import br.com.onsmarttech.butler.service.EmpresaService;
+import br.com.onsmarttech.butler.models.Condominio;
+import br.com.onsmarttech.butler.repositories.CondominioRepository;
+import br.com.onsmarttech.butler.service.CondominioService;
 
 @RestController
-@RequestMapping("/empresas")
-public class EmpresaController {
+@RequestMapping("/condominios")
+public class CondominioController {
 
 	@Autowired
-	private EmpresaRepository repository;
+	private CondominioRepository repository;
 
 	@Autowired
-	private EmpresaService service;
+	private CondominioService service;
 
 	@GetMapping
-	public Page<Empresa> listaEmpresas(Pageable pageable) {
+	public Page<Condominio> listaCondominios(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> buscarEmpresaPorId(@PathVariable Long id) {
-		Empresa empresa = repository.findOne(id);
+	public ResponseEntity<?> buscarCondominioPorId(@PathVariable Long id) {
+		Condominio condominio = repository.findOne(id);
 
-		return empresa != null ? ResponseEntity.ok(empresa) : ResponseEntity.notFound().build();
+		return condominio != null ? ResponseEntity.ok(condominio) : ResponseEntity.notFound().build();
 	}
 
 	@PostMapping
-	public ResponseEntity<?> salvarEmpresa(@Valid @RequestBody Empresa empresa) {
-		Empresa empresaSalva = repository.save(empresa);
+	public ResponseEntity<?> salvarCondominio(@Valid @RequestBody Condominio condominio) {
+		Condominio condominioSalva = repository.save(condominio);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(empresaSalva);
+		return ResponseEntity.status(HttpStatus.CREATED).body(condominioSalva);
 	}
 
 	@DeleteMapping("/{id}")
@@ -57,9 +57,9 @@ public class EmpresaController {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> salvarEmpresa(@PathVariable Long id, @Valid @RequestBody Empresa empresa) {
-		Empresa empresaSalva = service.atualizar(id, empresa);
+	public ResponseEntity<?> salvarCondominio(@PathVariable Long id, @Valid @RequestBody Condominio condominio) {
+		Condominio condominioSalva = service.atualizar(id, condominio);
 
-		return ResponseEntity.ok(empresaSalva);
+		return ResponseEntity.ok(condominioSalva);
 	}
 }
