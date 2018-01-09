@@ -1,6 +1,5 @@
 package br.com.onsmarttech.butler.models;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -17,21 +16,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 // @Table(schema = "base")
-public class Empresa extends DadosGenericos implements Serializable {
+public class Empresa extends DadosGenericos {
 
-	private static final long serialVersionUID = 1L;
-
-	@Column(length = 18, nullable = false, unique = true)
+	@Column(length = 18, unique = true)
 	@NotNull
 	@Size(min = 18, max = 18)
 	private String cnpj;
 
-	@Column(nullable = false, length = 30, unique = true)
+	@Column(length = 30, unique = true)
 	@NotNull
 	@Size(min = 5, max = 30)
 	private String nomeFantasia;
 
-	@Column(nullable = false, length = 30, unique = true)
+	@Column(length = 30, unique = true)
 	@NotNull
 	@Size(min = 5, max = 30)
 	private String nomeSocial;

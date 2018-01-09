@@ -1,15 +1,21 @@
 package br.com.onsmarttech.butler.models;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.annotations.UpdateTimestamp;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * The persistent class for the bloco database table.
@@ -17,13 +23,10 @@ import java.util.List;
  */
 @Entity
 // @Table(schema = "base")
-public class Bloco implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Bloco {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique = true, nullable = false)
 	private Long id;
 	private Boolean ativo;
 
@@ -43,14 +46,23 @@ public class Bloco implements Serializable {
 	@NotNull
 	private Condominio condominio;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataHoraCadastro;
+	private LocalDateTime dataHoraCadastro;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@UpdateTimestamp
-	private Date dataHoraModificacao;
+	private LocalDateTime dataHoraModificacao;
 
 	public Bloco() {
+	}
+
+	@PrePersist
+	private void onCreate() {
+		ativo = true;
+		dataHoraCadastro = LocalDateTime.now();
+		dataHoraModificacao = LocalDateTime.now();
+	}
+
+	@PreUpdate
+	private void onUpdate() {
+		dataHoraModificacao = LocalDateTime.now();
 	}
 
 	public Long getId() {
@@ -115,29 +127,19 @@ public class Bloco implements Serializable {
 		this.condominio = condominio;
 	}
 
-	public Date getDataHoraCadastro() {
-		return dataHoraCadastro == null ? new Date() : dataHoraCadastro;
+	public LocalDateTime getDataHoraCadastro() {
+		return dataHoraCadastro;
 	}
 
-	public void setDataHoraCadastro(Date dataHoraCadastro) {
+	public void setDataHoraCadastro(LocalDateTime dataHoraCadastro) {
 		this.dataHoraCadastro = dataHoraCadastro;
 	}
 
-	public Date getDataHoraModificacao() {
+	public LocalDateTime getDataHoraModificacao() {
 		return dataHoraModificacao;
 	}
 
-	public void setDataHoraModificacao(Date dataHoraModificacao) {
+	public void setDataHoraModificacao(LocalDateTime dataHoraModificacao) {
 		this.dataHoraModificacao = dataHoraModificacao;
-	}
-
-	@PrePersist
-	private void initAtivo() {
-		ativo = true;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
 	}
 }

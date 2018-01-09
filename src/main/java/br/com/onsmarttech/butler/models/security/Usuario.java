@@ -1,4 +1,4 @@
-package br.com.onsmarttech.butler.models;
+package br.com.onsmarttech.butler.models.security;
 
 import java.util.List;
 

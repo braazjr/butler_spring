@@ -1,6 +1,5 @@
 package br.com.onsmarttech.butler.models;
 
-import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -18,9 +17,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 // @Table(schema = "base")
-public class Construtora extends DadosGenericos implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Construtora extends DadosGenericos {
 
 	@Column(length = 255, unique = true)
 	@NotNull
@@ -49,7 +46,7 @@ public class Construtora extends DadosGenericos implements Serializable {
 	}
 
 	public String getCnpj() {
-		return this.cnpj;
+		return cnpj;
 	}
 
 	public void setCnpj(String cnpj) {
@@ -57,7 +54,7 @@ public class Construtora extends DadosGenericos implements Serializable {
 	}
 
 	public String getNomeFantasia() {
-		return this.nomeFantasia;
+		return nomeFantasia;
 	}
 
 	public void setNomeFantasia(String nomeFantasia) {
@@ -65,7 +62,7 @@ public class Construtora extends DadosGenericos implements Serializable {
 	}
 
 	public String getNomeSocial() {
-		return this.nomeSocial;
+		return nomeSocial;
 	}
 
 	public void setNomeSocial(String nomeSocial) {
@@ -73,29 +70,15 @@ public class Construtora extends DadosGenericos implements Serializable {
 	}
 
 	public List<Condominio> getCondominios() {
-		return this.condominios;
+		return condominios;
 	}
 
 	public void setCondominios(List<Condominio> condominios) {
 		this.condominios = condominios;
 	}
 
-	public Condominio addCondominio(Condominio condominio) {
-		getCondominios().add(condominio);
-		condominio.setConstrutora(this);
-
-		return condominio;
-	}
-
-	public Condominio removeCondominio(Condominio condominio) {
-		getCondominios().remove(condominio);
-		condominio.setConstrutora(null);
-
-		return condominio;
-	}
-
 	public Empresa getEmpresa() {
-		return this.empresa;
+		return empresa;
 	}
 
 	public void setEmpresa(Empresa empresa) {

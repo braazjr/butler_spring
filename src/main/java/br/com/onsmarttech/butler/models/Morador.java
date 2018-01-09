@@ -1,12 +1,16 @@
 package br.com.onsmarttech.butler.models;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  * The persistent class for the morador database table.
@@ -14,9 +18,7 @@ import org.hibernate.annotations.UpdateTimestamp;
  */
 @Entity
 // @Table(schema = "base")
-public class Morador implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class Morador {
 
 	@Id
 	@Column(unique = true, length = 255)
@@ -61,14 +63,23 @@ public class Morador implements Serializable {
 	@NotNull
 	private Bloco bloco;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataHoraCadastro;
+	private LocalDateTime dataHoraCadastro;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@UpdateTimestamp
-	private Date dataHoraModificacao;
+	private LocalDateTime dataHoraModificacao;
 
 	public Morador() {
+	}
+
+	@PrePersist
+	private void onCreate() {
+		ativo = true;
+		dataHoraCadastro = LocalDateTime.now();
+		dataHoraModificacao = LocalDateTime.now();
+	}
+
+	@PreUpdate
+	private void onUpdate() {
+		dataHoraModificacao = LocalDateTime.now();
 	}
 
 	public String getDocumento() {
@@ -167,30 +178,20 @@ public class Morador implements Serializable {
 		this.bloco = bloco;
 	}
 
-	public Date getDataHoraCadastro() {
-		return dataHoraCadastro == null ? new Date() : dataHoraCadastro;
+	public LocalDateTime getDataHoraCadastro() {
+		return dataHoraCadastro;
 	}
 
-	public void setDataHoraCadastro(Date dataHoraCadastro) {
+	public void setDataHoraCadastro(LocalDateTime dataHoraCadastro) {
 		this.dataHoraCadastro = dataHoraCadastro;
 	}
 
-	public Date getDataHoraModificacao() {
+	public LocalDateTime getDataHoraModificacao() {
 		return dataHoraModificacao;
 	}
 
-	public void setDataHoraModificacao(Date dataHoraModificacao) {
+	public void setDataHoraModificacao(LocalDateTime dataHoraModificacao) {
 		this.dataHoraModificacao = dataHoraModificacao;
-	}
-	
-	@PrePersist
-	private void initAtivo() {
-		ativo = true;
-	}
-
-	@Override
-	public String toString() {
-		return String.format("%s[documento=%d]", getClass().getSimpleName(), getDocumento());
 	}
 
 }

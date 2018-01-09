@@ -1,7 +1,6 @@
 package br.com.onsmarttech.butler.models;
 
-import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,67 +10,74 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.PrePersist;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.UpdateTimestamp;
-
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class DadosGenericos implements Serializable {
-
-	private static final long serialVersionUID = 1L;
+public class DadosGenericos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	@Column(unique = true, nullable = false)
 	private Long id;
 	private Boolean ativo;
-	
-	@Column(nullable = false, length = 30)
+
+	@Column(length = 30)
 	@NotNull
 	@Size(min = 5, max = 30)
 	private String bairro;
 
-	@Column(nullable = false, length = 9)
+	@Column(length = 9)
 	@NotNull
 	@Size(min = 9, max = 9)
 	private String cep;
 
-	@Column(nullable = false, length = 30)
+	@Column(length = 30)
 	@NotNull
 	@Size(min = 5, max = 30)
 	private String cidade;
+
+	@Column(length = 50)
+	@NotNull
 	private String complemento;
 
-	@Column(nullable = false, length = 50)
+	@Column(length = 50)
 	@NotNull
 	@Size(min = 5, max = 50)
 	private String email;
 
-	@Column(nullable = false, length = 20)
+	@Column(length = 20)
 	@NotNull
 	@Size(min = 5, max = 20)
 	private String estado;
 	private Integer numero;
 
-	@Column(nullable = false, length = 50)
+	@Column(length = 50)
 	@NotNull
 	@Size(min = 5, max = 50)
 	private String rua;
 
-	@Column(nullable = false, length = 13)
+	@Column(length = 13)
 	@NotNull
 	@Size(min = 13, max = 13)
 	private String telefone;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataHoraCadastro;
+	private LocalDateTime dataHoraCadastro;
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date dataHoraModificacao;
+	private LocalDateTime dataHoraModificacao;
+
+	@PrePersist
+	void onCreate() {
+		ativo = true;
+		dataHoraCadastro = LocalDateTime.now();
+		dataHoraModificacao = LocalDateTime.now();
+	}
+
+	@PreUpdate
+	void onUpdate() {
+		dataHoraModificacao = LocalDateTime.now();
+	}
 
 	public Long getId() {
 		return this.id;
@@ -81,7 +87,6 @@ public class DadosGenericos implements Serializable {
 		this.id = id;
 	}
 
-	@Column(nullable = false)
 	public Boolean getAtivo() {
 		return this.ativo;
 	}
@@ -114,7 +119,6 @@ public class DadosGenericos implements Serializable {
 		this.cidade = cidade;
 	}
 
-	@Column(nullable = true, length = 50)
 	public String getComplemento() {
 		return this.complemento;
 	}
@@ -139,7 +143,6 @@ public class DadosGenericos implements Serializable {
 		this.estado = estado;
 	}
 
-	@Column(nullable = false)
 	public Integer getNumero() {
 		return this.numero;
 	}
@@ -164,25 +167,19 @@ public class DadosGenericos implements Serializable {
 		this.telefone = telefone;
 	}
 
-	public Date getDataHoraCadastro() {
-		return dataHoraCadastro == null ? new Date() : dataHoraCadastro;
+	public LocalDateTime getDataHoraCadastro() {
+		return dataHoraCadastro;
 	}
 
-	public void setDataHoraCadastro(Date dataHoraCadastro) {
+	public void setDataHoraCadastro(LocalDateTime dataHoraCadastro) {
 		this.dataHoraCadastro = dataHoraCadastro;
 	}
 
-	@UpdateTimestamp
-	public Date getDataHoraModificacao() {
+	public LocalDateTime getDataHoraModificacao() {
 		return dataHoraModificacao;
 	}
 
-	public void setDataHoraModificacao(Date dataHoraModificacao) {
+	public void setDataHoraModificacao(LocalDateTime dataHoraModificacao) {
 		this.dataHoraModificacao = dataHoraModificacao;
-	}
-	
-	@PrePersist
-	private void initAtivo() {
-		ativo = true;
 	}
 }

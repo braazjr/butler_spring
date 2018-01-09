@@ -1,4 +1,4 @@
-package br.com.onsmarttech.butler.models;
+package br.com.onsmarttech.butler.models.buscontrol;
 
 import java.time.LocalDateTime;
 
@@ -7,46 +7,39 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
-/**
- * The persistent class for the apartamento database table.
- * 
- */
+import br.com.onsmarttech.butler.models.security.Usuario;
+
 @Entity
-// @Table(schema = "base")
-public class Apartamento {
+public class Rota {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(unique = true)
-	private Long id;
+	private Integer id;
 
-	@Column(length = 5)
+	@Column(length = 40)
 	@NotNull
-	private String numero;
+	private String nome;
+
 	private boolean ativo;
 
-	// bi-directional many-to-one association to Bloco
-	@ManyToOne
-	@JoinColumn(name = "id_bloco")
+	@OneToOne
 	@NotNull
-	private Bloco bloco;
+	private Usuario usuario;
 
 	private LocalDateTime dataHoraCadastro;
 
 	private LocalDateTime dataHoraModificacao;
 
-	public Apartamento() {
+	public Rota() {
 	}
 
 	@PrePersist
 	private void onCreate() {
-		ativo = true;
 		dataHoraCadastro = LocalDateTime.now();
 		dataHoraModificacao = LocalDateTime.now();
 	}
@@ -56,23 +49,23 @@ public class Apartamento {
 		dataHoraModificacao = LocalDateTime.now();
 	}
 
-	public Long getId() {
-		return this.id;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public String getNumero() {
-		return this.numero;
+	public String getNome() {
+		return nome;
 	}
 
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
-	public boolean getAtivo() {
+	public boolean isAtivo() {
 		return ativo;
 	}
 
@@ -80,12 +73,12 @@ public class Apartamento {
 		this.ativo = ativo;
 	}
 
-	public Bloco getBloco() {
-		return this.bloco;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setBloco(Bloco bloco) {
-		this.bloco = bloco;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	public LocalDateTime getDataHoraCadastro() {
