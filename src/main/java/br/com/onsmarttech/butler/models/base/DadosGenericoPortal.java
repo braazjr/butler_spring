@@ -1,0 +1,64 @@
+package br.com.onsmarttech.butler.models.base;
+
+import java.time.LocalDateTime;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class DadosGenericoPortal {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.TABLE)
+	private Long id;
+
+	@Column(name = "data_hora_cadastro")
+	private LocalDateTime dataHoraCadastro;
+
+	@Column(name = "data_hora_modificacao")
+	private LocalDateTime dataHoraModificacao;
+
+	@PrePersist
+	void onCreate() {
+		dataHoraCadastro = LocalDateTime.now();
+		dataHoraModificacao = LocalDateTime.now();
+	}
+
+	@PreUpdate
+	void onUpdate() {
+		dataHoraModificacao = LocalDateTime.now();
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getDataHoraCadastro() {
+		return dataHoraCadastro;
+	}
+
+	public void setDataHoraCadastro(LocalDateTime dataHoraCadastro) {
+		this.dataHoraCadastro = dataHoraCadastro;
+	}
+
+	public LocalDateTime getDataHoraModificacao() {
+		return dataHoraModificacao;
+	}
+
+	public void setDataHoraModificacao(LocalDateTime dataHoraModificacao) {
+		this.dataHoraModificacao = dataHoraModificacao;
+	}
+
+}

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.onsmarttech.butler.models.Construtora;
+import br.com.onsmarttech.butler.models.base.Construtora;
 import br.com.onsmarttech.butler.repositories.ConstrutoraRepository;
 import br.com.onsmarttech.butler.service.ConstrutoraService;
 

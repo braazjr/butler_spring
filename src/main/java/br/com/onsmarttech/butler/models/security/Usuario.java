@@ -11,7 +11,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "usuario")
+@Table(schema = "security")
 public class Usuario {
 
 	@Id

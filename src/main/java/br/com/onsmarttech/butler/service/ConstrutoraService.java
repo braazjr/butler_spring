@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.com.onsmarttech.butler.models.Construtora;
+import br.com.onsmarttech.butler.models.base.Construtora;
 import br.com.onsmarttech.butler.repositories.ConstrutoraRepository;
 
 @Service

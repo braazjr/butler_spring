@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import br.com.onsmarttech.butler.models.Condominio;
+import br.com.onsmarttech.butler.models.base.Condominio;
 import br.com.onsmarttech.butler.repositories.CondominioRepository;
 
 @Service

@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.onsmarttech.butler.models.Condominio;
+import br.com.onsmarttech.butler.models.base.Condominio;
 import br.com.onsmarttech.butler.repositories.CondominioRepository;
 import br.com.onsmarttech.butler.service.CondominioService;
 
