@@ -10,43 +10,57 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import br.com.onsmarttech.butler.models.base.Empresa;
+
 @Entity
 @Table(schema = "security")
 public class Usuario {
 
 	@Id
-	private Long codigo;
+	private Long id;
 
-	private String username;
-	private String nome;
+	private String login;
+	private String primeiroNome;
+	private String ultimoNome;
 	private String senha;
+	private Boolean ativo;
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "usuario_permissao", joinColumns = @JoinColumn(name = "codigo_usuario"), inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))
 	private List<Permissao> permissoes;
 
-	public Long getCodigo() {
-		return codigo;
+	private Empresa empresa;
+
+	public Long getId() {
+		return id;
 	}
 
-	public void setCodigo(Long codigo) {
-		this.codigo = codigo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getPrimeiroNome() {
+		return primeiroNome;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setPrimeiroNome(String primeiroNome) {
+		this.primeiroNome = primeiroNome;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUltimoNome() {
+		return ultimoNome;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUltimoNome(String ultimoNome) {
+		this.ultimoNome = ultimoNome;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+	
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getSenha() {
@@ -57,6 +71,14 @@ public class Usuario {
 		this.senha = senha;
 	}
 
+	public Boolean getAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(Boolean ativo) {
+		this.ativo = ativo;
+	}
+
 	public List<Permissao> getPermissoes() {
 		return permissoes;
 	}
@@ -65,4 +87,11 @@ public class Usuario {
 		this.permissoes = permissoes;
 	}
 
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
 }
