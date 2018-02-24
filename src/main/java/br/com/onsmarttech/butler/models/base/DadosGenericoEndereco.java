@@ -16,10 +16,10 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class DadosGenericoEndereco {
+public abstract class DadosGenericoEndereco {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 	private Boolean ativo;
 

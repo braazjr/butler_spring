@@ -12,12 +12,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import br.com.onsmarttech.butler.models.security.Usuario;
 
 @Entity
-@Table(schema = "buscontrol")
 public class Viagem {
 
 	@Id

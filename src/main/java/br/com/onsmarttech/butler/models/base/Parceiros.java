@@ -2,13 +2,11 @@ package br.com.onsmarttech.butler.models.base;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-@Table(schema = "portal")
 public class Parceiros extends DadosGenericoPortal {
 
 	@NotNull

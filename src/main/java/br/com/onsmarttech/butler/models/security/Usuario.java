@@ -8,12 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
 import br.com.onsmarttech.butler.models.base.Empresa;
 
 @Entity
-@Table(schema = "security")
 public class Usuario {
 
 	@Id
@@ -29,6 +28,8 @@ public class Usuario {
 	@JoinTable(name = "usuario_permissao", joinColumns = @JoinColumn(name = "codigo_usuario"), inverseJoinColumns = @JoinColumn(name = "codigo_permissao"))
 	private List<Permissao> permissoes;
 
+	@OneToOne
+	@JoinColumn(name = "id_empresa")
 	private Empresa empresa;
 
 	public Long getId() {

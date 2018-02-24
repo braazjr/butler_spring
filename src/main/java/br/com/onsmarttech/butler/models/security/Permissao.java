@@ -2,10 +2,8 @@ package br.com.onsmarttech.butler.models.security;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 @Entity
-@Table(schema = "security")
 public class Permissao {
 
 	@Id

@@ -12,13 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import br.com.onsmarttech.butler.models.security.Usuario;
 
 @Entity
-@Table(schema = "buscontrol")
 public class Veiculo {
 
 	@Id

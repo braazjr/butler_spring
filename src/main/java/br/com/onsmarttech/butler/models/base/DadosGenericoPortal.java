@@ -14,10 +14,10 @@ import javax.persistence.PreUpdate;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class DadosGenericoPortal {
+public abstract class DadosGenericoPortal {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@Column(name = "data_hora_cadastro")

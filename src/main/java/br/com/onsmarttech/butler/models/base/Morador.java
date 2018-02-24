@@ -8,14 +8,12 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
-import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(schema = "base")
 public class Morador {
 
 	@Id
@@ -56,7 +54,7 @@ public class Morador {
 	@JoinColumn(name = "tipo_morador")
 	private TipoMorador tipomorador;
 
-	@ManyToOne
+	@OneToMany
 	@JoinColumn(name = "id_apartamento")
 	@NotNull
 	private List<Apartamento> apartamentos;
