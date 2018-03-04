@@ -21,7 +21,7 @@ public class ViagemResidente {
 	private Integer id;
 
 	@ManyToOne
-	@JoinColumn(name = "id_trip")
+	@JoinColumn(name = "id_viagem")
 	@NotNull
 	private Viagem viagem;
 

@@ -8,8 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
@@ -37,9 +38,9 @@ public class Apartamento {
 
 	@Column(name = "data_hora_modificacao")
 	private LocalDateTime dataHoraModificacao;
-	
-	@OneToOne
-	@JoinColumn(name = "id_morador")
+
+	@OneToMany
+	@JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_morador"), inverseJoinColumns = @JoinColumn(name = "id_apartamento"))
 	private Morador morador;
 
 	public Apartamento() {
@@ -108,7 +109,7 @@ public class Apartamento {
 	public Morador getMorador() {
 		return morador;
 	}
-	
+
 	public void setMorador(Morador morador) {
 		this.morador = morador;
 	}

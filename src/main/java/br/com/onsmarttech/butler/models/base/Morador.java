@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
@@ -55,8 +56,7 @@ public class Morador {
 	private TipoMorador tipomorador;
 
 	@OneToMany
-	@JoinColumn(name = "id_apartamento")
-	@NotNull
+	@JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_apartamento"), inverseJoinColumns = @JoinColumn(name = "id_morador"))
 	private List<Apartamento> apartamentos;
 
 	@Column(name = "data_hora_cadastro")
@@ -171,7 +171,7 @@ public class Morador {
 	public List<Apartamento> getApartamentos() {
 		return apartamentos;
 	}
-	
+
 	public void setApartamentos(List<Apartamento> apartamentos) {
 		this.apartamentos = apartamentos;
 	}
