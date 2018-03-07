@@ -1,16 +1,18 @@
 package br.com.onsmarttech.butler.models.base;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
@@ -39,9 +41,9 @@ public class Apartamento {
 	@Column(name = "data_hora_modificacao")
 	private LocalDateTime dataHoraModificacao;
 
-	@OneToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_morador"), inverseJoinColumns = @JoinColumn(name = "id_apartamento"))
-	private Morador morador;
+	private List<Morador> morador;
 
 	public Apartamento() {
 	}
@@ -106,11 +108,12 @@ public class Apartamento {
 		this.dataHoraModificacao = dataHoraModificacao;
 	}
 
-	public Morador getMorador() {
+	public List<Morador> getMorador() {
 		return morador;
 	}
 
-	public void setMorador(Morador morador) {
+	public void setMorador(List<Morador> morador) {
 		this.morador = morador;
 	}
+
 }

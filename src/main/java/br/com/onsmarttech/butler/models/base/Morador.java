@@ -1,15 +1,12 @@
 package br.com.onsmarttech.butler.models.base;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
@@ -55,9 +52,9 @@ public class Morador {
 	@JoinColumn(name = "tipo_morador")
 	private TipoMorador tipomorador;
 
-	@OneToMany
-	@JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_apartamento"), inverseJoinColumns = @JoinColumn(name = "id_morador"))
-	private List<Apartamento> apartamentos;
+//	@ManyToMany(fetch = FetchType.EAGER)
+//	@JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_apartamento"), inverseJoinColumns = @JoinColumn(name = "id_morador"))
+//	private List<Apartamento> apartamentos;
 
 	@Column(name = "data_hora_cadastro")
 	private LocalDateTime dataHoraCadastro;
@@ -166,28 +163,6 @@ public class Morador {
 
 	public void setTipomorador(TipoMorador tipomorador) {
 		this.tipomorador = tipomorador;
-	}
-
-	public List<Apartamento> getApartamentos() {
-		return apartamentos;
-	}
-
-	public void setApartamentos(List<Apartamento> apartamentos) {
-		this.apartamentos = apartamentos;
-	}
-
-	public Apartamento addApartamento(Apartamento apartamento) {
-		getApartamentos().add(apartamento);
-		apartamento.setMorador(this);
-
-		return apartamento;
-	}
-
-	public Apartamento removeApartamento(Apartamento apartamento) {
-		getApartamentos().remove(apartamento);
-		apartamento.setMorador(null);
-
-		return apartamento;
 	}
 
 	public LocalDateTime getDataHoraCadastro() {
