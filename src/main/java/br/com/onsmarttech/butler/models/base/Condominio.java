@@ -67,9 +67,4 @@ public class Condominio extends DadosGenericoEndereco {
 	public void setConstrutora(Construtora construtora) {
 		this.construtora = construtora;
 	}
-
-	@Override
-	public String toString() {
-		return String.format("%s[id=%d]", getClass().getSimpleName(), getId());
-	}
 }

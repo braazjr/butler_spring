@@ -4,24 +4,22 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import br.com.onsmarttech.butler.models.security.Usuario;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class DadosGenericoEndereco {
+public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
-	private Long id;
-	private Boolean ativo;
+	private boolean ativo;
 
 	@Column(length = 30)
 	@NotNull
@@ -69,6 +67,11 @@ public abstract class DadosGenericoEndereco {
 	@Column(name = "data_hora_modificacao")
 	private LocalDateTime dataHoraModificacao;
 
+	@OneToOne
+	@JoinColumn(name = "id_usuario")
+	@NotNull
+	private Usuario usuario;
+
 	@PrePersist
 	void onCreate() {
 		ativo = true;
@@ -79,14 +82,6 @@ public abstract class DadosGenericoEndereco {
 	@PreUpdate
 	void onUpdate() {
 		dataHoraModificacao = LocalDateTime.now();
-	}
-
-	public Long getId() {
-		return this.id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public Boolean getAtivo() {

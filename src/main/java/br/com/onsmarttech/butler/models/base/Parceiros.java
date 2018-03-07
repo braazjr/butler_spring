@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
-public class Parceiros extends DadosGenericoPortal {
+public class Parceiros extends DadosGenericoHistorico {
 
 	@NotNull
 	@NotEmpty

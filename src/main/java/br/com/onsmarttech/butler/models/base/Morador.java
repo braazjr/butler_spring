@@ -12,9 +12,8 @@ import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class Morador {
+public class Morador extends DadosGenericoHistorico {
 
-	@Id
 	@Column(unique = true, length = 20)
 	@NotNull
 	private String documento;
@@ -52,29 +51,12 @@ public class Morador {
 	@JoinColumn(name = "tipo_morador")
 	private TipoMorador tipomorador;
 
-//	@ManyToMany(fetch = FetchType.EAGER)
-//	@JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_apartamento"), inverseJoinColumns = @JoinColumn(name = "id_morador"))
-//	private List<Apartamento> apartamentos;
-
-	@Column(name = "data_hora_cadastro")
-	private LocalDateTime dataHoraCadastro;
-
-	@Column(name = "data_hora_modificacao")
-	private LocalDateTime dataHoraModificacao;
-
 	public Morador() {
 	}
 
 	@PrePersist
-	private void onCreate() {
+	private void onCreateChild() {
 		ativo = true;
-		dataHoraCadastro = LocalDateTime.now();
-		dataHoraModificacao = LocalDateTime.now();
-	}
-
-	@PreUpdate
-	private void onUpdate() {
-		dataHoraModificacao = LocalDateTime.now();
 	}
 
 	public String getDocumento() {
@@ -163,22 +145,6 @@ public class Morador {
 
 	public void setTipomorador(TipoMorador tipomorador) {
 		this.tipomorador = tipomorador;
-	}
-
-	public LocalDateTime getDataHoraCadastro() {
-		return dataHoraCadastro;
-	}
-
-	public void setDataHoraCadastro(LocalDateTime dataHoraCadastro) {
-		this.dataHoraCadastro = dataHoraCadastro;
-	}
-
-	public LocalDateTime getDataHoraModificacao() {
-		return dataHoraModificacao;
-	}
-
-	public void setDataHoraModificacao(LocalDateTime dataHoraModificacao) {
-		this.dataHoraModificacao = dataHoraModificacao;
 	}
 
 }
