@@ -23,7 +23,7 @@ public class Condominio extends DadosGenericoEndereco {
 	private List<Bloco> blocos;
 
 	@ManyToOne
-	@JoinColumn(name = "id_condominio")
+	@JoinColumn(name = "id_construtora")
 	@NotNull
 	private Construtora construtora;
 

@@ -17,7 +17,7 @@ public class Bloco extends DadosGenericoHistorico {
 	
 	private Boolean ativo;
 
-	@Column(length = 15)
+	@Column(length = 25)
 	@NotNull
 	private String nome;
 	private Integer numero;

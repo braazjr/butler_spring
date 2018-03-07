@@ -18,14 +18,14 @@ public class Empresa extends DadosGenericoEndereco {
 	@Size(min = 18, max = 18)
 	private String cnpj;
 
-	@Column(length = 30, unique = true, name = "nome_fantasia")
+	@Column(length = 50, unique = true, name = "nome_fantasia")
 	@NotNull
-	@Size(min = 5, max = 30)
+	@Size(min = 5, max = 50)
 	private String nomeFantasia;
 
-	@Column(length = 30, unique = true, name = "nome_social")
+	@Column(length = 50, unique = true, name = "nome_social")
 	@NotNull
-	@Size(min = 5, max = 30)
+	@Size(min = 5, max = 50)
 	private String nomeSocial;
 
 	@JsonIgnore

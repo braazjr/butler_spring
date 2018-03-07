@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Apartamento extends DadosGenericoHistorico {
 
-	@Column(length = 5)
+	@Column(length = 15)
 	@NotNull
 	private String numero;
 	private boolean ativo;

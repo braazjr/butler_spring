@@ -37,11 +37,9 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	private String cidade;
 
 	@Column(length = 50)
-	@NotNull
 	private String complemento;
 
 	@Column(length = 50)
-	@NotNull
 	@Size(min = 5, max = 50)
 	private String email;
 

@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -16,14 +17,17 @@ public class Construtora extends DadosGenericoEndereco {
 
 	@Column(length = 18, unique = true)
 	@NotNull
+	@Size(min = 18, max = 18)
 	private String cnpj;
 
 	@Column(length = 50, unique = true, name = "nome_fantasia")
 	@NotNull
+	@Size(min = 5, max = 50)
 	private String nomeFantasia;
 
 	@Column(length = 50, unique = true, name = "nome_social")
 	@NotNull
+	@Size(min = 5, max = 50)
 	private String nomeSocial;
 
 	@JsonIgnore
