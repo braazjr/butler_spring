@@ -1,19 +1,12 @@
 package br.com.onsmarttech.butler.models.base;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import br.com.onsmarttech.butler.models.security.Usuario;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -59,28 +52,11 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	@Size(min = 13, max = 13)
 	private String telefone;
 
-	@Column(name = "data_hora_cadastro")
-	private LocalDateTime dataHoraCadastro;
-
-	@Column(name = "data_hora_modificacao")
-	private LocalDateTime dataHoraModificacao;
-
-	@OneToOne
-	@JoinColumn(name = "id_usuario")
-	@NotNull
-	private Usuario usuario;
-
 	@PrePersist
 	void onCreate() {
 		ativo = true;
-		dataHoraCadastro = LocalDateTime.now();
-		dataHoraModificacao = LocalDateTime.now();
 	}
 
-	@PreUpdate
-	void onUpdate() {
-		dataHoraModificacao = LocalDateTime.now();
-	}
 
 	public Boolean getAtivo() {
 		return this.ativo;
@@ -160,21 +136,5 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
-	}
-
-	public LocalDateTime getDataHoraCadastro() {
-		return dataHoraCadastro;
-	}
-
-	public void setDataHoraCadastro(LocalDateTime dataHoraCadastro) {
-		this.dataHoraCadastro = dataHoraCadastro;
-	}
-
-	public LocalDateTime getDataHoraModificacao() {
-		return dataHoraModificacao;
-	}
-
-	public void setDataHoraModificacao(LocalDateTime dataHoraModificacao) {
-		this.dataHoraModificacao = dataHoraModificacao;
 	}
 }
