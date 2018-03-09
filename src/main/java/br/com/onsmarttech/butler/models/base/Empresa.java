@@ -20,7 +20,7 @@ public class Empresa extends DadosGenericoEndereco {
 
 	@Column(length = 50, unique = true, name = "nome_fantasia")
 	@NotNull
-	@Size(min = 5, max = 50)
+	@Size(min = 3, max = 50)
 	private String nomeFantasia;
 
 	@Column(length = 50, unique = true, name = "nome_social")

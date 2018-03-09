@@ -57,17 +57,16 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 		ativo = true;
 	}
 
-
-	public Boolean getAtivo() {
-		return this.ativo;
+	public boolean isAtivo() {
+		return ativo;
 	}
 
-	public void setAtivo(Boolean ativo) {
+	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
 	}
 
 	public String getBairro() {
-		return this.bairro;
+		return bairro;
 	}
 
 	public void setBairro(String bairro) {
@@ -75,7 +74,7 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	}
 
 	public String getCep() {
-		return this.cep;
+		return cep;
 	}
 
 	public void setCep(String cep) {
@@ -83,7 +82,7 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	}
 
 	public String getCidade() {
-		return this.cidade;
+		return cidade;
 	}
 
 	public void setCidade(String cidade) {
@@ -91,7 +90,7 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	}
 
 	public String getComplemento() {
-		return this.complemento;
+		return complemento;
 	}
 
 	public void setComplemento(String complemento) {
@@ -99,7 +98,7 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	}
 
 	public String getEmail() {
-		return this.email;
+		return email;
 	}
 
 	public void setEmail(String email) {
@@ -107,7 +106,7 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	}
 
 	public String getEstado() {
-		return this.estado;
+		return estado;
 	}
 
 	public void setEstado(String estado) {
@@ -115,7 +114,7 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	}
 
 	public Integer getNumero() {
-		return this.numero;
+		return numero;
 	}
 
 	public void setNumero(Integer numero) {
@@ -123,7 +122,7 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	}
 
 	public String getRua() {
-		return this.rua;
+		return rua;
 	}
 
 	public void setRua(String rua) {
@@ -131,10 +130,11 @@ public abstract class DadosGenericoEndereco extends DadosGenericoHistorico {
 	}
 
 	public String getTelefone() {
-		return this.telefone;
+		return telefone;
 	}
 
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
 }
