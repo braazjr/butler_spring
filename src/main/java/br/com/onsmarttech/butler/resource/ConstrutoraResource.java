@@ -22,7 +22,7 @@ import br.com.onsmarttech.butler.repositories.ConstrutoraRepository;
 import br.com.onsmarttech.butler.service.ConstrutoraService;
 
 @RestController
-@RequestMapping("/construtoras")
+@RequestMapping("/construtora")
 public class ConstrutoraResource {
 
 	@Autowired

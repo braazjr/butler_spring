@@ -22,7 +22,7 @@ import br.com.onsmarttech.butler.repositories.BlocoRepository;
 import br.com.onsmarttech.butler.service.BlocoService;
 
 @RestController
-@RequestMapping("/blocos")
+@RequestMapping("/bloco")
 public class BlocoResource {
 
 	@Autowired

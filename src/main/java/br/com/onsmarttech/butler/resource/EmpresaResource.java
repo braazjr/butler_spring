@@ -24,7 +24,7 @@ import br.com.onsmarttech.butler.repositories.EmpresaRepository;
 import br.com.onsmarttech.butler.service.EmpresaService;
 
 @RestController
-@RequestMapping("/empresas")
+@RequestMapping("/empresa")
 public class EmpresaResource {
 
 	@Autowired

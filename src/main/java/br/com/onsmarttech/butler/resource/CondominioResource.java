@@ -22,7 +22,7 @@ import br.com.onsmarttech.butler.repositories.CondominioRepository;
 import br.com.onsmarttech.butler.service.CondominioService;
 
 @RestController
-@RequestMapping("/condominios")
+@RequestMapping("/condominio")
 public class CondominioResource {
 
 	@Autowired

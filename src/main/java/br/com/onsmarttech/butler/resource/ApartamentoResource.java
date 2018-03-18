@@ -22,7 +22,7 @@ import br.com.onsmarttech.butler.repositories.ApartamentoRepository;
 import br.com.onsmarttech.butler.service.ApartamentoService;
 
 @RestController
-@RequestMapping("/apartamentos")
+@RequestMapping("/apartamento")
 public class ApartamentoResource {
 
 	@Autowired
