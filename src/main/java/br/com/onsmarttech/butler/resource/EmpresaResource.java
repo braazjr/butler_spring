@@ -35,13 +35,13 @@ public class EmpresaResource {
 
 	@GetMapping
 	@CrossOrigin
-	@PreAuthorize("hasAuthority('ROLE_SISTEMAS_READ') or hasAuthority('ROLE_SISTEMAS_WRITE')")
+	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_READ') or hasAuthority('ROLE_SISTEMAS_WRITE')")
 	public Page<Empresa> listaEmpresas(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
 
 	@GetMapping("/{id}")
-	@PreAuthorize("hasAuthority('ROLE_SISTEMAS_READ') or hasAuthority('ROLE_SISTEMAS_WRITE')")
+	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_READ') or hasAuthority('ROLE_SISTEMAS_WRITE')")
 	public ResponseEntity<?> buscarEmpresaPorId(@PathVariable Long id) {
 		Empresa empresa = repository.findOne(id);
 
@@ -49,7 +49,7 @@ public class EmpresaResource {
 	}
 
 	@PostMapping
-	@PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
+	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
 	public ResponseEntity<?> salvarEmpresa(@Valid @RequestBody Empresa empresa) {
 		Empresa empresaSalva = repository.save(empresa);
 
@@ -58,13 +58,13 @@ public class EmpresaResource {
 
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	@PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
+	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);
 	}
 
 	@PutMapping("/{id}")
-	@PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
+	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
 	public ResponseEntity<?> atualizarEmpresa(@PathVariable Long id, @Valid @RequestBody Empresa empresa) {
 		Empresa empresaSalva = service.atualizar(id, empresa);
 
