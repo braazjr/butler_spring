@@ -24,9 +24,9 @@ public class Apartamento extends DadosGenericoHistorico {
 	@NotNull
 	private Bloco bloco;
 
-	@ManyToMany
-	@JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_morador"), inverseJoinColumns = @JoinColumn(name = "id_apartamento"))
-	private List<Morador> morador;
+	// @ManyToMany
+	// @JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_morador"), inverseJoinColumns = @JoinColumn(name = "id_apartamento"))
+	// private List<Morador> morador;
 
 	public Apartamento() {
 	}
@@ -60,12 +60,12 @@ public class Apartamento extends DadosGenericoHistorico {
 		this.bloco = bloco;
 	}
 
-	public List<Morador> getMorador() {
-		return morador;
-	}
+	// public List<Morador> getMorador() {
+	// 	return morador;
+	// }
 
-	public void setMorador(List<Morador> morador) {
-		this.morador = morador;
-	}
+	// public void setMorador(List<Morador> morador) {
+	// 	this.morador = morador;
+	// }
 
 }

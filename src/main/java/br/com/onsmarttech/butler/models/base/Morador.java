@@ -1,9 +1,13 @@
 package br.com.onsmarttech.butler.models.base;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.PrePersist;
 import javax.validation.constraints.NotNull;
 
@@ -46,6 +50,10 @@ public class Morador extends DadosGenericoHistorico {
 	@NotNull
 	@JoinColumn(name = "tipo_morador")
 	private TipoMorador tipomorador;
+
+	@ManyToMany
+	@JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_morador"), inverseJoinColumns = @JoinColumn(name = "id_apartamento"))
+	private List<Apartamento> apartamentos;
 
 	public Morador() {
 	}
@@ -143,4 +151,17 @@ public class Morador extends DadosGenericoHistorico {
 		this.tipomorador = tipomorador;
 	}
 
+	/**
+	 * @return the apartamentos
+	 */
+	public List<Apartamento> getApartamentos() {
+		return apartamentos;
+	}
+
+	/**
+	 * @param apartamentos the apartamentos to set
+	 */
+	public void setApartamentos(List<Apartamento> apartamentos) {
+		this.apartamentos = apartamentos;
+	}
 }
