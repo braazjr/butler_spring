@@ -1,5 +1,7 @@
 package br.com.onsmarttech.butler.resource;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,11 +38,18 @@ public class BlocoResource {
 		return repository.findAll(pageable);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/buscarPorId/{id}")
 	public ResponseEntity<?> buscarBlocoPorId(@PathVariable Long id) {
 		Bloco bloco = repository.findOne(id);
 
 		return bloco != null ? ResponseEntity.ok(bloco) : ResponseEntity.notFound().build();
+	}
+
+	@GetMapping("/buscarPorCondominio/{idCondominio}")
+	public ResponseEntity<?> buscarPorCondominio(@PathVariable Long idCondominio) {
+		List<Bloco> blocos = repository.buscarPorCondominio(idCondominio);
+
+		return blocos != null ? ResponseEntity.ok(blocos) : ResponseEntity.notFound().build();
 	}
 
 	@PostMapping
