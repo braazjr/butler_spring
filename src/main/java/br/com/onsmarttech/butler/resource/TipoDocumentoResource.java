@@ -1,0 +1,20 @@
+package br.com.onsmarttech.butler.resource;
+
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.onsmarttech.butler.models.base.TipoDocumento;
+
+@RestController
+@RequestMapping("/tipoDocumento")
+public class TipoDocumentoResource {
+
+    @GetMapping
+    public List<TipoDocumento> listaTiposMorador() {
+        return Arrays.asList(TipoDocumento.values());
+    }
+}

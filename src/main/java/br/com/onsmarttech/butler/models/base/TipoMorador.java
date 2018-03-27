@@ -2,7 +2,7 @@ package br.com.onsmarttech.butler.models.base;
 
 public enum TipoMorador {
 
-	JURIDICO("Juridico"), PROPRIETARIO("Proprietario"), LOCATARIO("Locatario"), DEPENDENTE("Dependente"), TEMPORADA(
+	JURIDICO("Jurídico"), PROPRIETARIO("Proprietário"), LOCATARIO("Locatário"), DEPENDENTE("Dependente"), TEMPORADA(
 			"Temporada"), EMPREGO("Emprego");
 
 	public String label;
