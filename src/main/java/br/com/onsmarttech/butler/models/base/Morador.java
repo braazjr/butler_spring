@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -15,24 +16,24 @@ import javax.validation.constraints.NotNull;
 public class Morador extends DadosGenericoHistorico {
 
 	@Column(unique = true, length = 20)
-	@NotNull
+	// @NotNull
 	private String documento;
 	private Boolean ativo;
 
 	@Column(length = 14)
-	@NotNull
+	// @NotNull
 	private String celular;
 
-	@Column(length = 30)
-	@NotNull
+	@Column(length = 50)
+	// @NotNull
 	private String email;
 
-	@Column(length = 30)
+	@Column(length = 50)
 	@NotNull
 	private String nome;
 
 	@Column(length = 14)
-	@NotNull
+	// @NotNull
 	private String telefone;
 
 	@Column(length = 8, name = "placa_carro")
@@ -41,15 +42,15 @@ public class Morador extends DadosGenericoHistorico {
 	private String observacao;
 	private String parentesco;
 
-	@Enumerated
-	@NotNull
-	@JoinColumn(name = "tipo_documento")
-	private TipoDocumento tipodocumento;
+	@Enumerated(EnumType.STRING)
+	// @NotNull
+	// @JoinColumn(name = "tipo_documento")
+	private TipoDocumento tipoDocumento;
 
-	@Enumerated
+	@Enumerated(EnumType.STRING)
 	@NotNull
-	@JoinColumn(name = "tipo_morador")
-	private TipoMorador tipomorador;
+	// @JoinColumn(name = "tipo_morador")
+	private TipoMorador tipoMorador;
 
 	@ManyToMany
 	@JoinTable(name = "apartamento_morador", joinColumns = @JoinColumn(name = "id_morador"), inverseJoinColumns = @JoinColumn(name = "id_apartamento"))
@@ -134,33 +135,27 @@ public class Morador extends DadosGenericoHistorico {
 	public void setParentesco(String parentesco) {
 		this.parentesco = parentesco;
 	}
-
-	public TipoDocumento getTipodocumento() {
-		return this.tipodocumento;
+	
+	public TipoDocumento getTipoDocumento() {
+		return tipoDocumento;
 	}
 
-	public void setTipodocumento(TipoDocumento tipodocumento) {
-		this.tipodocumento = tipodocumento;
+	public void setTipoDocumento(TipoDocumento tipoDocumento) {
+		this.tipoDocumento = tipoDocumento;
 	}
 
-	public TipoMorador getTipomorador() {
-		return this.tipomorador;
+	public TipoMorador getTipoMorador() {
+		return tipoMorador;
 	}
 
-	public void setTipomorador(TipoMorador tipomorador) {
-		this.tipomorador = tipomorador;
+	public void setTipoMorador(TipoMorador tipoMorador) {
+		this.tipoMorador = tipoMorador;
 	}
 
-	/**
-	 * @return the apartamentos
-	 */
 	public List<Apartamento> getApartamentos() {
 		return apartamentos;
 	}
 
-	/**
-	 * @param apartamentos the apartamentos to set
-	 */
 	public void setApartamentos(List<Apartamento> apartamentos) {
 		this.apartamentos = apartamentos;
 	}
