@@ -1,4 +1,4 @@
-package br.com.onsmarttech.butler.resource;
+package br.com.onsmarttech.butler.controllers;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import br.com.onsmarttech.butler.service.ApartamentoService;
 
 @RestController
 @RequestMapping("/apartamento")
-public class ApartamentoResource {
+public class ApartamentoController {
 
 	@Autowired
 	private ApartamentoRepository repository;

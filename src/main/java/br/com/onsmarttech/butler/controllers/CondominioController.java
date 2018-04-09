@@ -1,4 +1,4 @@
-package br.com.onsmarttech.butler.resource;
+package br.com.onsmarttech.butler.controllers;
 
 import javax.validation.Valid;
 
@@ -17,37 +17,37 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.onsmarttech.butler.models.base.Morador;
-import br.com.onsmarttech.butler.repositories.MoradorRepository;
-import br.com.onsmarttech.butler.service.MoradorService;
+import br.com.onsmarttech.butler.models.base.Condominio;
+import br.com.onsmarttech.butler.repositories.CondominioRepository;
+import br.com.onsmarttech.butler.service.CondominioService;
 
 @RestController
-@RequestMapping("/morador")
-public class MoradorResource {
+@RequestMapping("/condominio")
+public class CondominioController {
 
 	@Autowired
-	private MoradorRepository repository;
+	private CondominioRepository repository;
 
 	@Autowired
-	private MoradorService service;
+	private CondominioService service;
 
 	@GetMapping
-	public Page<Morador> listaMoradores(Pageable pageable) {
+	public Page<Condominio> listaCondominios(Pageable pageable) {
 		return repository.findAll(pageable);
 	}
 
 	@GetMapping("/{id}")
-	public ResponseEntity<?> buscarMoradorPorId(@PathVariable Long id) {
-		Morador morador = repository.findOne(id);
+	public ResponseEntity<?> buscarCondominioPorId(@PathVariable Long id) {
+		Condominio condominio = repository.findOne(id);
 
-		return morador != null ? ResponseEntity.ok(morador) : ResponseEntity.notFound().build();
+		return condominio != null ? ResponseEntity.ok(condominio) : ResponseEntity.notFound().build();
 	}
 
 	@PostMapping
-	public ResponseEntity<?> salvarMorador(@Valid @RequestBody Morador morador) {
-		Morador moradorSalvo = repository.save(morador);
+	public ResponseEntity<?> salvarCondominio(@Valid @RequestBody Condominio condominio) {
+		Condominio condominioSalva = repository.save(condominio);
 
-		return ResponseEntity.status(HttpStatus.CREATED).body(moradorSalvo);
+		return ResponseEntity.status(HttpStatus.CREATED).body(condominioSalva);
 	}
 
 	@DeleteMapping("/{id}")
@@ -57,9 +57,9 @@ public class MoradorResource {
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<?> salvarMorador(@PathVariable Long id, @Valid @RequestBody Morador morador) {
-		Morador moradorSalvo = service.atualizar(id, morador);
+	public ResponseEntity<?> salvarCondominio(@PathVariable Long id, @Valid @RequestBody Condominio condominio) {
+		Condominio condominioSalva = service.atualizar(id, condominio);
 
-		return ResponseEntity.ok(moradorSalvo);
+		return ResponseEntity.ok(condominioSalva);
 	}
 }

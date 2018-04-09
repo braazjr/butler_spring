@@ -1,4 +1,4 @@
-package br.com.onsmarttech.butler.resource;
+package br.com.onsmarttech.butler.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +12,7 @@ import br.com.onsmarttech.butler.repositories.UsuarioRepository;
 
 @RestController
 @RequestMapping("/usuario")
-public class UsuarioResource {
+public class UsuarioController {
 	
 	@Autowired
 	private UsuarioRepository repository;

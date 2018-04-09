@@ -1,4 +1,4 @@
-package br.com.onsmarttech.butler.resource;
+package br.com.onsmarttech.butler.controllers;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,7 +11,7 @@ import br.com.onsmarttech.butler.models.base.TipoDocumento;
 
 @RestController
 @RequestMapping("/tipoDocumento")
-public class TipoDocumentoResource {
+public class TipoDocumentoController {
 
     @GetMapping
     public List<TipoDocumento> listaTiposMorador() {

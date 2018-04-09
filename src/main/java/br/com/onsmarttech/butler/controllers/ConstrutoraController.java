@@ -1,4 +1,4 @@
-package br.com.onsmarttech.butler.resource;
+package br.com.onsmarttech.butler.controllers;
 
 import javax.validation.Valid;
 
@@ -23,7 +23,7 @@ import br.com.onsmarttech.butler.service.ConstrutoraService;
 
 @RestController
 @RequestMapping("/construtora")
-public class ConstrutoraResource {
+public class ConstrutoraController {
 
 	@Autowired
 	private ConstrutoraRepository repository;

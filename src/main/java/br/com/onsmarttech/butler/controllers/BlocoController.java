@@ -1,4 +1,4 @@
-package br.com.onsmarttech.butler.resource;
+package br.com.onsmarttech.butler.controllers;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import br.com.onsmarttech.butler.service.BlocoService;
 
 @RestController
 @RequestMapping("/bloco")
-public class BlocoResource {
+public class BlocoController {
 
 	@Autowired
 	private BlocoRepository repository;
