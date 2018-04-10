@@ -60,12 +60,12 @@ public class Apartamento extends DadosGenericoHistorico {
 		this.bloco = bloco;
 	}
 
-	public List<Morador> getMorador() {
+	public List<Morador> getMoradores() {
 		return moradores;
 	}
 
-	public void setMorador(List<Morador> morador) {
-		this.moradores = morador;
+	public void setMoradores(List<Morador> moradores) {
+		this.moradores = moradores;
 	}
 
 }
