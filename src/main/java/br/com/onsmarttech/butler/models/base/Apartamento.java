@@ -19,6 +19,8 @@ public class Apartamento extends DadosGenericoHistorico {
 	private String numero;
 	private boolean ativo;
 
+	private Integer numeroQuartos;
+
 	@ManyToOne
 	@JoinColumn(name = "id_bloco")
 	@NotNull
@@ -50,6 +52,14 @@ public class Apartamento extends DadosGenericoHistorico {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public Integer getNumeroQuartos() {
+		return numeroQuartos;
+	}
+
+	public void setNumeroQuartos(Integer numeroQuartos) {
+		this.numeroQuartos = numeroQuartos;
 	}
 
 	public Bloco getBloco() {
