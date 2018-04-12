@@ -1,10 +1,10 @@
 package br.com.onsmarttech.butler.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -32,8 +32,8 @@ public class CondominioController {
 	private CondominioService service;
 
 	@GetMapping
-	public Page<Condominio> listaCondominios(Pageable pageable) {
-		return repository.findAll(pageable);
+	public List<Condominio> listaCondominios() {
+		return repository.findAll();
 	}
 
 	@GetMapping("/buscarPorId/{id}")

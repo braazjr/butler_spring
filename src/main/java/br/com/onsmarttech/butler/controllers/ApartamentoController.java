@@ -5,8 +5,6 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -34,8 +32,8 @@ public class ApartamentoController {
 	private ApartamentoService service;
 
 	@GetMapping
-	public Page<Apartamento> listaApartamentos(Pageable pageable) {
-		return repository.findAll(pageable);
+	public List<Apartamento> listaApartamentos() {
+		return repository.findAll();
 	}
 
 	@GetMapping("/buscarPorId/{id}")
