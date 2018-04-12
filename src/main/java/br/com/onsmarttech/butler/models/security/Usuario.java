@@ -10,6 +10,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import br.com.onsmarttech.butler.models.base.Empresa;
 
 @Entity
@@ -21,6 +23,8 @@ public class Usuario {
 	private String login;
 	private String primeiroNome;
 	private String ultimoNome;
+
+	@JsonIgnore
 	private String senha;
 	private Boolean ativo;
 
