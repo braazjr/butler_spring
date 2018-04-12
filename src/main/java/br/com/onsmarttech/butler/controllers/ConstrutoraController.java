@@ -36,7 +36,7 @@ public class ConstrutoraController {
 		return repository.findAll(pageable);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/buscarPorId/{id}")
 	public ResponseEntity<?> buscarConstrutoraPorId(@PathVariable Long id) {
 		Construtora construtora = repository.findOne(id);
 

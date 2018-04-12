@@ -36,7 +36,7 @@ public class CondominioController {
 		return repository.findAll(pageable);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/buscarPorId/{id}")
 	public ResponseEntity<?> buscarCondominioPorId(@PathVariable Long id) {
 		Condominio condominio = repository.findOne(id);
 

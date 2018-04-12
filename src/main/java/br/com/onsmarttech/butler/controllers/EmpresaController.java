@@ -39,7 +39,7 @@ public class EmpresaController {
 		return repository.findAll(pageable);
 	}
 
-	@GetMapping("/{id}")
+	@GetMapping("/buscarPorId/{id}")
 	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_READ') or hasAuthority('ROLE_SISTEMAS_WRITE')")
 	public ResponseEntity<?> buscarEmpresaPorId(@PathVariable Long id) {
 		Empresa empresa = repository.findOne(id);
