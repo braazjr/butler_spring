@@ -1,18 +1,37 @@
 package br.com.onsmarttech.butler.models.base;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
+import br.com.onsmarttech.butler.models.security.Usuario;
+
 @Entity
-public class Apartamento extends DadosGenericoHistorico {
+public class Apartamento {
+
+	/*
+	 * update morador set tipo_morador = null where id not in (select qq.id_morador
+	 * from (select (select am.id_morador from apartamento_morador am where
+	 * am.id_apartamento = a.id order by am.id_morador limit 1) from apartamento a)
+	 * qq where qq.id_morador is not null);
+	 */
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@Column(length = 15)
 	@NotNull
@@ -30,12 +49,38 @@ public class Apartamento extends DadosGenericoHistorico {
 	@JoinTable(name = "apartamento_morador", inverseJoinColumns = @JoinColumn(name = "id_morador"), joinColumns = @JoinColumn(name = "id_apartamento"))
 	private List<Morador> moradores;
 
+	@Column(name = "data_hora_cadastro")
+	private LocalDateTime dataHoraCadastro;
+
+	@Column(name = "data_hora_modificacao")
+	private LocalDateTime dataHoraModificacao;
+
+	@OneToOne
+	@JoinColumn(name = "id_usuario")
+	@NotNull
+	private Usuario usuario;
+
+	@PrePersist
+	void onCreate() {
+		dataHoraCadastro = LocalDateTime.now();
+		dataHoraModificacao = LocalDateTime.now();
+		ativo = true;
+	}
+
+	@PreUpdate
+	void onUpdate() {
+		dataHoraModificacao = LocalDateTime.now();
+	}
+
 	public Apartamento() {
 	}
 
-	@PrePersist
-	private void onCreateChild() {
-		ativo = true;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getNumero() {
@@ -76,6 +121,30 @@ public class Apartamento extends DadosGenericoHistorico {
 
 	public void setMoradores(List<Morador> moradores) {
 		this.moradores = moradores;
+	}
+
+	public LocalDateTime getDataHoraCadastro() {
+		return dataHoraCadastro;
+	}
+
+	public void setDataHoraCadastro(LocalDateTime dataHoraCadastro) {
+		this.dataHoraCadastro = dataHoraCadastro;
+	}
+
+	public LocalDateTime getDataHoraModificacao() {
+		return dataHoraModificacao;
+	}
+
+	public void setDataHoraModificacao(LocalDateTime dataHoraModificacao) {
+		this.dataHoraModificacao = dataHoraModificacao;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

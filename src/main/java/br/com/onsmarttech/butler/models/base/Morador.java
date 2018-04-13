@@ -1,14 +1,28 @@
 package br.com.onsmarttech.butler.models.base;
 
+import java.time.LocalDateTime;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
+import br.com.onsmarttech.butler.models.security.Usuario;
+
 @Entity
-public class Morador extends DadosGenericoHistorico {
+public class Morador {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	@Column(unique = true, length = 20)
 	// @NotNull
@@ -43,16 +57,42 @@ public class Morador extends DadosGenericoHistorico {
 	private TipoDocumento tipoDocumento;
 
 	@Enumerated(EnumType.STRING)
-	@NotNull
+//	@NotNull
 	// @JoinColumn(name = "tipo_morador")
 	private TipoMorador tipoMorador;
+
+	@Column(name = "data_hora_cadastro")
+	private LocalDateTime dataHoraCadastro;
+
+	@Column(name = "data_hora_modificacao")
+	private LocalDateTime dataHoraModificacao;
+
+	@OneToOne
+	@JoinColumn(name = "id_usuario")
+	@NotNull
+	private Usuario usuario;
+
+	@PrePersist
+	void onCreate() {
+		dataHoraCadastro = LocalDateTime.now();
+		dataHoraModificacao = LocalDateTime.now();
+		ativo = true;
+	}
+
+	@PreUpdate
+	void onUpdate() {
+		dataHoraModificacao = LocalDateTime.now();
+	}
 
 	public Morador() {
 	}
 
-	@PrePersist
-	private void onCreateChild() {
-		ativo = true;
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getDocumento() {
@@ -141,5 +181,29 @@ public class Morador extends DadosGenericoHistorico {
 
 	public void setTipoMorador(TipoMorador tipoMorador) {
 		this.tipoMorador = tipoMorador;
+	}
+
+	public LocalDateTime getDataHoraCadastro() {
+		return dataHoraCadastro;
+	}
+
+	public void setDataHoraCadastro(LocalDateTime dataHoraCadastro) {
+		this.dataHoraCadastro = dataHoraCadastro;
+	}
+
+	public LocalDateTime getDataHoraModificacao() {
+		return dataHoraModificacao;
+	}
+
+	public void setDataHoraModificacao(LocalDateTime dataHoraModificacao) {
+		this.dataHoraModificacao = dataHoraModificacao;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 }
