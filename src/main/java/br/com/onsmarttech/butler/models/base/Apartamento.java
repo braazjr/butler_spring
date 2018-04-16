@@ -49,6 +49,10 @@ public class Apartamento {
 	@JoinTable(name = "apartamento_morador", inverseJoinColumns = @JoinColumn(name = "id_morador"), joinColumns = @JoinColumn(name = "id_apartamento"))
 	private List<Morador> moradores;
 
+	@ManyToMany
+	@JoinTable(name = "apartamento_documento", inverseJoinColumns = @JoinColumn(name = "id_documento"), joinColumns = @JoinColumn(name = "id_apartamento"))
+	private List<Documento> documentos;
+
 	@Column(name = "data_hora_cadastro")
 	private LocalDateTime dataHoraCadastro;
 
@@ -121,6 +125,14 @@ public class Apartamento {
 
 	public void setMoradores(List<Morador> moradores) {
 		this.moradores = moradores;
+	}
+
+	public List<Documento> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
 	}
 
 	public LocalDateTime getDataHoraCadastro() {

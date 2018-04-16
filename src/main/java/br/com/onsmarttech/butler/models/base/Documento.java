@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import br.com.onsmarttech.butler.models.security.Usuario;
 
 @Entity
-public class Documentos {
+public class Documento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -56,7 +56,13 @@ public class Documentos {
 		dataHoraModificacao = LocalDateTime.now();
 	}
 
-	public Documentos() {
+	public Documento() {
+	}
+
+	public Documento(String nome, String path, Usuario usuario) {
+		this.nome = nome;
+		this.path = path;
+		this.usuario = usuario;
 	}
 
 	public Long getId() {
