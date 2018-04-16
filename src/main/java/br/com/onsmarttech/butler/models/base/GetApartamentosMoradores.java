@@ -8,6 +8,18 @@ import javax.persistence.Table;
 @Table(name = "get_apartamentos_moradores")
 public class GetApartamentosMoradores {
 
+	/*
+	 * SELECT ap.id AS id_apartamento, ap.numero AS numero_apartamento, m.id AS
+	 * id_morador, m.documento AS documento_morador, m.nome AS nome_morador,
+	 * m.tipo_morador, bl.id AS id_bloco, bl.nome AS nome_bloco, bl.numero AS
+	 * numero_bloco, co.id AS id_condominio, co.nome AS nome_condominio, ct.id AS
+	 * id_construtora, ct.nome_fantasia AS nome_fantasia_construtora FROM
+	 * apartamento_morador am JOIN morador m ON m.id = am.id_morador JOIN
+	 * apartamento ap ON ap.id = am.id_apartamento JOIN bloco bl ON bl.id =
+	 * ap.id_bloco JOIN condominio co ON co.id = bl.id_condominio JOIN construtora
+	 * ct ON ct.id = co.id_construtora;
+	 */
+
 	@EmbeddedId
 	private GetApartamentosMoradoresID apartamentosMoradoresID;
 	private String numeroApartamento;
