@@ -18,7 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 import br.com.onsmarttech.butler.models.security.Usuario;
 
 @Entity
-public class Parceiros {
+public class Servico {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,12 +27,11 @@ public class Parceiros {
 	@NotNull
 	@NotEmpty
 	@Column(length = 50)
-	private String nome;
+	private String titulo;
 
 	@NotNull
 	@NotEmpty
-	@Column(length = 100)
-	private String path;
+	private String conteudo;
 
 	@Column(name = "data_hora_cadastro")
 	private LocalDateTime dataHoraCadastro;
@@ -56,7 +55,7 @@ public class Parceiros {
 		dataHoraModificacao = LocalDateTime.now();
 	}
 
-	public Parceiros() {
+	public Servico() {
 	}
 
 	public Long getId() {
@@ -67,20 +66,20 @@ public class Parceiros {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getTitulo() {
+		return titulo;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
 	}
 
-	public String getPath() {
-		return path;
+	public String getConteudo() {
+		return conteudo;
 	}
 
-	public void setPath(String path) {
-		this.path = path;
+	public void setConteudo(String conteudo) {
+		this.conteudo = conteudo;
 	}
 
 	public LocalDateTime getDataHoraCadastro() {
