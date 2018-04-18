@@ -12,10 +12,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.onsmarttech.butler.models.security.Usuario;
 
@@ -49,8 +52,8 @@ public class Apartamento {
 	@JoinTable(name = "apartamento_morador", inverseJoinColumns = @JoinColumn(name = "id_morador"), joinColumns = @JoinColumn(name = "id_apartamento"))
 	private List<Morador> moradores;
 
-	@ManyToMany
-	@JoinTable(name = "apartamento_documento", inverseJoinColumns = @JoinColumn(name = "id_documento"), joinColumns = @JoinColumn(name = "id_apartamento"))
+	@OneToMany(mappedBy = "apartamento")
+	@JsonIgnore
 	private List<Documento> documentos;
 
 	@Column(name = "data_hora_cadastro")
@@ -133,6 +136,10 @@ public class Apartamento {
 
 	public void setDocumentos(List<Documento> documentos) {
 		this.documentos = documentos;
+	}
+
+	public void addDocumento(Documento documento) {
+		getDocumentos().add(documento);
 	}
 
 	public LocalDateTime getDataHoraCadastro() {

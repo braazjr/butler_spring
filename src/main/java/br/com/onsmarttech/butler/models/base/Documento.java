@@ -8,12 +8,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.onsmarttech.butler.models.security.Usuario;
 
@@ -31,7 +34,7 @@ public class Documento {
 
 	@NotNull
 	@NotEmpty
-	@Column(length = 100)
+	// @Column(length = 100)
 	private String path;
 
 	@Column(name = "data_hora_cadastro")
@@ -40,9 +43,16 @@ public class Documento {
 	@Column(name = "data_hora_modificacao")
 	private LocalDateTime dataHoraModificacao;
 
+	@ManyToOne
+	@JoinColumn(name = "id_apartamento")
+	@NotNull
+	@JsonIgnore
+	private Apartamento apartamento;
+
 	@OneToOne
 	@JoinColumn(name = "id_usuario")
 	@NotNull
+	@JsonIgnore
 	private Usuario usuario;
 
 	@PrePersist
@@ -59,10 +69,11 @@ public class Documento {
 	public Documento() {
 	}
 
-	public Documento(String nome, String path, Usuario usuario) {
+	public Documento(String nome, String path, Usuario usuario, Apartamento apto) {
 		this.nome = nome;
 		this.path = path;
 		this.usuario = usuario;
+		this.apartamento = apto;
 	}
 
 	public Long getId() {
@@ -103,6 +114,14 @@ public class Documento {
 
 	public void setDataHoraModificacao(LocalDateTime dataHoraModificacao) {
 		this.dataHoraModificacao = dataHoraModificacao;
+	}
+
+	public Apartamento getApartamento() {
+		return apartamento;
+	}
+
+	public void setApartamento(Apartamento apartamento) {
+		this.apartamento = apartamento;
 	}
 
 	public Usuario getUsuario() {

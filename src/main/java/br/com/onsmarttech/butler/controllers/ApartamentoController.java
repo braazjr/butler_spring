@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
 import br.com.onsmarttech.butler.models.base.Apartamento;
 import br.com.onsmarttech.butler.repositories.ApartamentoRepository;
@@ -71,17 +69,4 @@ public class ApartamentoController {
 
 		return ResponseEntity.ok(apartamentoSalva);
 	}
-
-	@PostMapping(value = "/uploadDocumento/{idUsuario}")
-	public ResponseEntity<?> uploadDocumento(@RequestParam MultipartFile file, @PathVariable Long idUsuario) {
-		if (file != null && (idUsuario != null && idUsuario != 0)) {
-			service.uploadDocumento(idUsuario, file);
-			
-			return ResponseEntity.ok().body(null);
-		} else {
-			return ResponseEntity.badRequest().body(null);
-		}
-
-	}
-
 }
