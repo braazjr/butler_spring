@@ -1,6 +1,6 @@
 package br.com.onsmarttech.butler.models.buscontrol;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.onsmarttech.butler.models.base.Morador;
 
@@ -23,6 +25,7 @@ public class ViagemResidente {
 	@ManyToOne
 	@JoinColumn(name = "id_viagem")
 	@NotNull
+	@JsonIgnore
 	private Viagem viagem;
 
 	@OneToOne
@@ -31,7 +34,7 @@ public class ViagemResidente {
 	private Morador morador;
 
 	@NotNull
-	private LocalDateTime horario;
+	private LocalTime horario;
 
 	public ViagemResidente() {
 	}
@@ -60,11 +63,11 @@ public class ViagemResidente {
 		this.morador = morador;
 	}
 
-	public LocalDateTime getHorario() {
+	public LocalTime getHorario() {
 		return horario;
 	}
 
-	public void setHorario(LocalDateTime horario) {
+	public void setHorario(LocalTime horario) {
 		this.horario = horario;
 	}
 

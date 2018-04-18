@@ -1,7 +1,7 @@
 package br.com.onsmarttech.butler.models.buscontrol;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
+
 import br.com.onsmarttech.butler.models.security.Usuario;
 
 @Entity
@@ -36,7 +37,7 @@ public class Viagem {
 	private LocalDate data;
 
 	@NotNull
-	private LocalDateTime horario;
+	private LocalTime horario;
 
 	@OneToMany(mappedBy = "viagem", cascade = CascadeType.ALL)
 	private List<ViagemResidente> residentes;
@@ -76,11 +77,11 @@ public class Viagem {
 		this.data = data;
 	}
 
-	public LocalDateTime getHorario() {
+	public LocalTime getHorario() {
 		return horario;
 	}
 
-	public void setHorario(LocalDateTime horario) {
+	public void setHorario(LocalTime horario) {
 		this.horario = horario;
 	}
 
