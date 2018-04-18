@@ -33,6 +33,13 @@ public class RotaController {
 		return rotas != null ? ResponseEntity.ok(rotas) : ResponseEntity.noContent().build();
 	}
 
+	@GetMapping("/buscarPorId/{idRota}")
+	public ResponseEntity<?> buscarRotaPorId(@PathVariable Integer idRota) {
+		Rota rota = repository.findOne(idRota);
+		
+		return rota != null ? ResponseEntity.ok(rota) : ResponseEntity.noContent().build();
+	}
+
 	@PostMapping
 	public ResponseEntity<?> salvarRota(@Valid @RequestBody Rota rota) {
 		Rota rotaSalva = repository.save(rota);
