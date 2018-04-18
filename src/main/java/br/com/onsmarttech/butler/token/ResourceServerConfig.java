@@ -29,15 +29,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		auth.userDetailsService(userDetailsService);
 	}
 
-	// private PasswordEncoder passwordEncoder() {
-	// return new BCryptPasswordEncoder();
-	// }
-
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/apartamento/uploadDocumento/*").permitAll().anyRequest()
-				.authenticated().and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-				.csrf().disable();
+		http.authorizeRequests().antMatchers("/documento/uploadDocumento/*/*", "/documento/exibirDocumento/*")
+				.permitAll().anyRequest().authenticated().and().sessionManagement()
+				.sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().csrf().disable();
 	}
 
 	@Override
