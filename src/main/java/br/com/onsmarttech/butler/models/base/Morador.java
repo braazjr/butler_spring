@@ -15,6 +15,8 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotNull;
 
+import org.springframework.data.annotation.Transient;
+
 import br.com.onsmarttech.butler.models.security.Usuario;
 
 @Entity
@@ -60,6 +62,9 @@ public class Morador {
 //	@NotNull
 	// @JoinColumn(name = "tipo_morador")
 	private TipoMorador tipoMorador;
+
+	@Transient
+	private String foto64;
 
 	@Column(name = "data_hora_cadastro")
 	private LocalDateTime dataHoraCadastro;
