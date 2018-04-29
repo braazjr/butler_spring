@@ -7,7 +7,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,39 +31,38 @@ public class EmpresaController {
 	@Autowired
 	private EmpresaService service;
 
-	@GetMapping
-	@CrossOrigin
+	@GetMapping("/buscarTodos")
 	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_READ') or hasAuthority('ROLE_SISTEMAS_WRITE')")
-	public List<Empresa> listaEmpresas() {
+	public List<Empresa> buscarTodos() {
 		return repository.findAll();
 	}
 
 	@GetMapping("/buscarPorId/{id}")
 	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_READ') or hasAuthority('ROLE_SISTEMAS_WRITE')")
-	public ResponseEntity<?> buscarEmpresaPorId(@PathVariable Long id) {
+	public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 		Empresa empresa = repository.findOne(id);
 
 		return empresa != null ? ResponseEntity.ok(empresa) : ResponseEntity.notFound().build();
 	}
 
-	@PostMapping
+	@PostMapping("/salvar")
 	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
-	public ResponseEntity<?> salvarEmpresa(@Valid @RequestBody Empresa empresa) {
+	public ResponseEntity<?> salvar(@Valid @RequestBody Empresa empresa) {
 		Empresa empresaSalva = repository.save(empresa);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(empresaSalva);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletarPorID/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/atualizar/{id}")
 	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
-	public ResponseEntity<?> atualizarEmpresa(@PathVariable Long id, @Valid @RequestBody Empresa empresa) {
+	public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Empresa empresa) {
 		Empresa empresaSalva = service.atualizar(id, empresa);
 
 		return ResponseEntity.ok(empresaSalva);

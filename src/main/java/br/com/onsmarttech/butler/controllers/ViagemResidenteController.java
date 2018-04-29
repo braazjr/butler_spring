@@ -26,28 +26,28 @@ public class ViagemResidenteController {
 	@Autowired
 	private ViagemResidenteRepository repository;
 
-	@GetMapping
-	public ResponseEntity<?> buscarViagemResidentes() {
+	@GetMapping("/buscarTodos")
+	public ResponseEntity<?> buscarTodos() {
 		List<ViagemResidente> viagemResidentes = repository.findAll();
 		
 		return viagemResidentes != null ? ResponseEntity.ok(viagemResidentes) : ResponseEntity.noContent().build();
 	}
 
-	@GetMapping("/{idViagem}")
-	public ResponseEntity<?> buscarViagemResidentesPorViagem(@PathVariable Integer idViagem) {
+	@GetMapping("/buscarPorViagem{idViagem}")
+	public ResponseEntity<?> buscarPorViagem(@PathVariable Integer idViagem) {
 		List<ViagemResidente> viagemResidentes = repository.buscarViagemResidentesPorViagem(idViagem);
 		
 		return viagemResidentes != null ? ResponseEntity.ok(viagemResidentes) : ResponseEntity.noContent().build();
 	}
 
-	@PostMapping
-	public ResponseEntity<?> salvarViagemResidente(@Valid @RequestBody ViagemResidente viagemResidente) {
+	@PostMapping("/salvar")
+	public ResponseEntity<?> salvar(@Valid @RequestBody ViagemResidente viagemResidente) {
 		ViagemResidente viagemResidenteSalva = repository.save(viagemResidente);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(viagemResidenteSalva);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletarPorID/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Integer id) {
 		repository.delete(id);

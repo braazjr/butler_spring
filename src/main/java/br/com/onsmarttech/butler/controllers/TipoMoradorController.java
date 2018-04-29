@@ -13,8 +13,8 @@ import br.com.onsmarttech.butler.models.base.TipoMorador;
 @RequestMapping("/tipoMorador")
 public class TipoMoradorController {
 
-    @GetMapping
-    public List<TipoMorador> listaTiposMorador() {
+    @GetMapping("/buscarTodos")
+    public List<TipoMorador> buscarTodos() {
         return Arrays.asList(TipoMorador.values());
     }
 }

@@ -31,33 +31,33 @@ public class ConstrutoraController {
 	@Autowired
 	private ConstrutoraService service;
 
-	@GetMapping
-	public List<Construtora> listaConstrutoras() {
+	@GetMapping("/buscarTodos")
+	public List<Construtora> buscarTodos() {
 		return repository.findAll();
 	}
 
 	@GetMapping("/buscarPorId/{id}")
-	public ResponseEntity<?> buscarConstrutoraPorId(@PathVariable Long id) {
+	public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 		Construtora construtora = repository.findOne(id);
 
 		return construtora != null ? ResponseEntity.ok(construtora) : ResponseEntity.notFound().build();
 	}
 
-	@PostMapping
-	public ResponseEntity<?> salvarConstrutora(@Valid @RequestBody Construtora construtora) {
+	@PostMapping("/salvar")
+	public ResponseEntity<?> salvar(@Valid @RequestBody Construtora construtora) {
 		Construtora construtoraSalva = repository.save(construtora);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(construtoraSalva);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletarPorID/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<?> salvarConstrutora(@PathVariable Long id, @Valid @RequestBody Construtora construtora) {
+	@PutMapping("/atualizar/{id}")
+	public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Construtora construtora) {
 		Construtora construtoraSalva = service.atualizar(id, construtora);
 
 		return ResponseEntity.ok(construtoraSalva);

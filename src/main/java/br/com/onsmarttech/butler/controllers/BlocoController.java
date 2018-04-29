@@ -31,13 +31,13 @@ public class BlocoController {
 	@Autowired
 	private BlocoService service;
 
-	@GetMapping
-	public List<Bloco> listaBlocos() {
+	@GetMapping("/buscarTodos")
+	public List<Bloco> buscarTodos() {
 		return repository.findAll();
 	}
 
 	@GetMapping("/buscarPorId/{id}")
-	public ResponseEntity<?> buscarBlocoPorId(@PathVariable Long id) {
+	public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 		Bloco bloco = repository.findOne(id);
 
 		return bloco != null ? ResponseEntity.ok(bloco) : ResponseEntity.notFound().build();
@@ -50,21 +50,21 @@ public class BlocoController {
 		return blocos != null ? ResponseEntity.ok(blocos) : ResponseEntity.notFound().build();
 	}
 
-	@PostMapping
-	public ResponseEntity<?> salvarBloco(@Valid @RequestBody Bloco bloco) {
+	@PostMapping("/salvar")
+	public ResponseEntity<?> salvar(@Valid @RequestBody Bloco bloco) {
 		Bloco blocoSalva = repository.save(bloco);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(blocoSalva);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletarPorID/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<?> salvarBloco(@PathVariable Long id, @Valid @RequestBody Bloco bloco) {
+	@PutMapping("/atualizar/{id}")
+	public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Bloco bloco) {
 		Bloco blocoSalva = service.atualizar(id, bloco);
 
 		return ResponseEntity.ok(blocoSalva);

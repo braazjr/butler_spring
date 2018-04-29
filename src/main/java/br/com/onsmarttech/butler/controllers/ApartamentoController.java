@@ -31,13 +31,13 @@ public class ApartamentoController {
 	@Autowired
 	private ApartamentoService service;
 
-	@GetMapping
-	public List<Apartamento> listaApartamentos() {
+	@GetMapping("/buscarTodos")
+	public List<Apartamento> buscarTodos() {
 		return repository.findAll();
 	}
 
 	@GetMapping("/buscarPorId/{id}")
-	public ResponseEntity<?> buscarApartamentoPorId(@PathVariable Long id) {
+	public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 		Apartamento apartamento = repository.findOne(id);
 
 		return apartamento != null ? ResponseEntity.ok(apartamento) : ResponseEntity.notFound().build();
@@ -50,21 +50,21 @@ public class ApartamentoController {
 		return apartamentos != null ? ResponseEntity.ok(apartamentos) : ResponseEntity.notFound().build();
 	}
 
-	@PostMapping
-	public ResponseEntity<?> salvarApartamento(@Valid @RequestBody Apartamento apartamento) {
+	@PostMapping("/salvar")
+	public ResponseEntity<?> salvar(@Valid @RequestBody Apartamento apartamento) {
 		Apartamento apartamentoSalva = repository.save(apartamento);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(apartamentoSalva);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletarPorID/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<?> salvarApartamento(@PathVariable Long id, @Valid @RequestBody Apartamento apartamento) {
+	@PutMapping("/atualizar/{id}")
+	public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Apartamento apartamento) {
 		Apartamento apartamentoSalva = service.atualizar(id, apartamento);
 
 		return ResponseEntity.ok(apartamentoSalva);

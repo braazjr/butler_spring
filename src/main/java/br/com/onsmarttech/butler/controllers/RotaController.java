@@ -26,28 +26,28 @@ public class RotaController {
 	@Autowired
 	private RotaRepository repository;
 
-	@GetMapping
-	public ResponseEntity<?> buscarRotas() {
+	@GetMapping("/buscarTodos")
+	public ResponseEntity<?> buscarTodos() {
 		List<Rota> rotas = repository.findAll();
 		
 		return rotas != null ? ResponseEntity.ok(rotas) : ResponseEntity.noContent().build();
 	}
 
 	@GetMapping("/buscarPorId/{idRota}")
-	public ResponseEntity<?> buscarRotaPorId(@PathVariable Integer idRota) {
+	public ResponseEntity<?> buscarPorId(@PathVariable Integer idRota) {
 		Rota rota = repository.findOne(idRota);
 		
 		return rota != null ? ResponseEntity.ok(rota) : ResponseEntity.noContent().build();
 	}
 
-	@PostMapping
-	public ResponseEntity<?> salvarRota(@Valid @RequestBody Rota rota) {
+	@PostMapping("/salvar")
+	public ResponseEntity<?> salvar(@Valid @RequestBody Rota rota) {
 		Rota rotaSalva = repository.save(rota);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(rotaSalva);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletarPorID/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Integer id) {
 		repository.delete(id);

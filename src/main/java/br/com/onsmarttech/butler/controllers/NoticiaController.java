@@ -26,28 +26,28 @@ public class NoticiaController {
 	@Autowired
 	private NoticiaRepository repository;
 
-	@GetMapping
-	public ResponseEntity<?> buscarNoticias() {
+	@GetMapping("/buscarTodos")
+	public ResponseEntity<?> buscarTodos() {
 		List<Noticia> noticias = repository.findAll();
 		
 		return noticias != null ? ResponseEntity.ok(noticias) : ResponseEntity.noContent().build();
 	}
 
 	@GetMapping("/buscarPorId/{idNoticia}")
-	public ResponseEntity<?> buscarNoticiaPorId(@PathVariable Long idNoticia) {
+	public ResponseEntity<?> buscarPorId(@PathVariable Long idNoticia) {
 		Noticia noticia = repository.findOne(idNoticia);
 		
 		return noticia != null ? ResponseEntity.ok(noticia) : ResponseEntity.noContent().build();
 	}
 
-	@PostMapping
+	@PostMapping("/salvar")
 	public ResponseEntity<?> salvarNoticia(@Valid @RequestBody Noticia noticia) {
 		Noticia noticiaSalva = repository.save(noticia);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(noticiaSalva);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletarPorID/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);

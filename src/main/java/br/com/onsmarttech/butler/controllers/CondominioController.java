@@ -31,33 +31,33 @@ public class CondominioController {
 	@Autowired
 	private CondominioService service;
 
-	@GetMapping
-	public List<Condominio> listaCondominios() {
+	@GetMapping("/buscarTodos")
+	public List<Condominio> buscarTodos() {
 		return repository.findAll();
 	}
 
 	@GetMapping("/buscarPorId/{id}")
-	public ResponseEntity<?> buscarCondominioPorId(@PathVariable Long id) {
+	public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 		Condominio condominio = repository.findOne(id);
 
 		return condominio != null ? ResponseEntity.ok(condominio) : ResponseEntity.notFound().build();
 	}
 
-	@PostMapping
-	public ResponseEntity<?> salvarCondominio(@Valid @RequestBody Condominio condominio) {
+	@PostMapping("/salvar")
+	public ResponseEntity<?> salvar(@Valid @RequestBody Condominio condominio) {
 		Condominio condominioSalva = repository.save(condominio);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(condominioSalva);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletarPorID/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<?> salvarCondominio(@PathVariable Long id, @Valid @RequestBody Condominio condominio) {
+	@PutMapping("/atualizar/{id}")
+	public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Condominio condominio) {
 		Condominio condominioSalva = service.atualizar(id, condominio);
 
 		return ResponseEntity.ok(condominioSalva);

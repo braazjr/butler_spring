@@ -13,8 +13,8 @@ import br.com.onsmarttech.butler.models.base.TipoDocumento;
 @RequestMapping("/tipoDocumento")
 public class TipoDocumentoController {
 
-    @GetMapping
-    public List<TipoDocumento> listaTiposMorador() {
+    @GetMapping("/buscarTodos")
+    public List<TipoDocumento> buscarTodos() {
         return Arrays.asList(TipoDocumento.values());
     }
 }

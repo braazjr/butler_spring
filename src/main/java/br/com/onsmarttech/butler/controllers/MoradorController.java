@@ -31,8 +31,8 @@ public class MoradorController {
 	@Autowired
 	private MoradorService service;
 
-	@GetMapping
-	public List<Morador> listaMoradores() {
+	@GetMapping("/buscarTodos")
+	public List<Morador> buscarTodos() {
 		return repository.findAll();
 	}
 
@@ -55,28 +55,28 @@ public class MoradorController {
 	// 	return result;
 	// }
 
-	@GetMapping("/{id}")
-	public ResponseEntity<?> buscarMoradorPorId(@PathVariable Long id) {
+	@GetMapping("/buscarPorId/{id}")
+	public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
 		Morador morador = repository.findOne(id);
 
 		return morador != null ? ResponseEntity.ok(morador) : ResponseEntity.notFound().build();
 	}
 
-	@PostMapping
-	public ResponseEntity<?> salvarMorador(@Valid @RequestBody Morador morador) {
+	@PostMapping("/salvar")
+	public ResponseEntity<?> salvar(@Valid @RequestBody Morador morador) {
 		Morador moradorSalvo = repository.save(morador);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(moradorSalvo);
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/deletarPorID/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<?> salvarMorador(@PathVariable Long id, @Valid @RequestBody Morador morador) {
+	@PutMapping("/atualizar/{id}")
+	public ResponseEntity<?> atualizar(@PathVariable Long id, @Valid @RequestBody Morador morador) {
 		Morador moradorSalvo = service.atualizar(id, morador);
 
 		return ResponseEntity.ok(moradorSalvo);
