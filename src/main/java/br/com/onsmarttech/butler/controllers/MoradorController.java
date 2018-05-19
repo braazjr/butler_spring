@@ -69,7 +69,7 @@ public class MoradorController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(moradorSalvo);
 	}
 
-	@DeleteMapping("/deletarPorID/{id}")
+	@DeleteMapping("/deletarPorId/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);

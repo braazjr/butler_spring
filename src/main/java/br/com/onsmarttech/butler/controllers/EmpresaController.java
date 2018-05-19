@@ -53,7 +53,7 @@ public class EmpresaController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(empresaSalva);
 	}
 
-	@DeleteMapping("/deletarPorID/{id}")
+	@DeleteMapping("/deletarPorId/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	// @PreAuthorize("hasAuthority('ROLE_SISTEMAS_WRITE')")
 	public void deletar(@PathVariable Long id) {

@@ -50,7 +50,7 @@ public class CondominioController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(condominioSalva);
 	}
 
-	@DeleteMapping("/deletarPorID/{id}")
+	@DeleteMapping("/deletarPorId/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);

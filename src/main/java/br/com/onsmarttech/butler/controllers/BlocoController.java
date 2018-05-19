@@ -57,7 +57,7 @@ public class BlocoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(blocoSalva);
 	}
 
-	@DeleteMapping("/deletarPorID/{id}")
+	@DeleteMapping("/deletarPorId/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletar(@PathVariable Long id) {
 		repository.delete(id);
