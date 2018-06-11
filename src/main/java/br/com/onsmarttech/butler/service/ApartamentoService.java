@@ -1,5 +1,14 @@
 package br.com.onsmarttech.butler.service;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+
+import javax.imageio.ImageIO;
+
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -24,5 +33,32 @@ public class ApartamentoService {
 		BeanUtils.copyProperties(apartamento, apartamentoSalva, "id");
 
 		return repository.save(apartamentoSalva);
+	}
+
+	public Apartamento save(Apartamento apartamento) {
+		Apartamento apartamentoSalvo = repository.save(apartamento);
+
+		if (apartamentoSalvo.getMoradores() != null && !apartamentoSalvo.getMoradores().isEmpty()) {
+			apartamentoSalvo.getMoradores().forEach(morador -> {
+				try {
+					String foto = morador.getFoto64();
+
+					if (!foto.isEmpty()) {
+						InputStream is = new ByteArrayInputStream(Base64.encodeBase64(foto.getBytes()));
+
+						BufferedImage image = ImageIO.read(is);
+						is.close();
+
+						ImageIO.write(image, "jpeg",
+								new File("C:\\Users\\ebj\\Documents\\GitHub\\butler_spring\\fotos\\" + morador.getId()
+										+ ".jpeg"));
+					}
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			});
+		}
+
+		return apartamentoSalvo;
 	}
 }

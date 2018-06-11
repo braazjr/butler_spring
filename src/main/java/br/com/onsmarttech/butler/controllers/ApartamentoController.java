@@ -52,7 +52,7 @@ public class ApartamentoController {
 
 	@PostMapping("/salvar")
 	public ResponseEntity<?> salvar(@Valid @RequestBody Apartamento apartamento) {
-		Apartamento apartamentoSalva = repository.save(apartamento);
+		Apartamento apartamentoSalva = service.save(apartamento);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(apartamentoSalva);
 	}

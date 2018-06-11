@@ -187,6 +187,14 @@ public class Morador {
 	public void setTipoMorador(TipoMorador tipoMorador) {
 		this.tipoMorador = tipoMorador;
 	}
+	
+	public String getFoto64() {
+		return foto64;
+	}
+	
+	public void setFoto64(String foto64) {
+		this.foto64 = foto64;
+	}
 
 	public LocalDateTime getDataHoraCadastro() {
 		return dataHoraCadastro;
