@@ -58,6 +58,29 @@ CREATE TABLE public.apartamento (
 ALTER TABLE public.apartamento OWNER TO postgres;
 
 --
+-- TOC entry 235 (class 1259 OID 25070)
+-- Name: apartamento_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.apartamento_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.apartamento_id_seq OWNER TO postgres;
+
+--
+-- TOC entry 3089 (class 0 OID 0)
+-- Dependencies: 235
+-- Name: apartamento_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.apartamento_id_seq OWNED BY public.apartamento.id;
+
+--
 -- TOC entry 217 (class 1259 OID 16701)
 -- Name: apartamento_morador; Type: TABLE; Schema: public; Owner: postgres
 --
@@ -445,6 +468,21 @@ CREATE TABLE public.morador (
 
 
 ALTER TABLE public.morador OWNER TO postgres;
+
+--
+-- TOC entry 235 (class 1259 OID 25070)
+-- Name: morador_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.morador_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.morador_id_seq OWNER TO postgres;
 
 --
 -- TOC entry 218 (class 1259 OID 24947)
