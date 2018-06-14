@@ -23,7 +23,7 @@ import br.com.onsmarttech.butler.models.security.Usuario;
 public class Morador {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE)
 	private Long id;
 
 	@Column(unique = true, length = 20)

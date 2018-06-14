@@ -43,7 +43,7 @@ public class ApartamentoService {
 				try {
 					String foto = morador.getFoto64();
 
-					if (!foto.isEmpty()) {
+					if (foto != null && !foto.isEmpty()) {
 						InputStream is = new ByteArrayInputStream(Base64.encodeBase64(foto.getBytes()));
 
 						BufferedImage image = ImageIO.read(is);
