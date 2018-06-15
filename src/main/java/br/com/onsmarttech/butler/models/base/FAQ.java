@@ -57,6 +57,12 @@ public class FAQ {
 	public FAQ() {
 	}
 
+	@Override
+	public String toString() {
+		return "FAQ [id=" + id + ", pergunta=" + pergunta + ", resposta=" + resposta + ", dataHoraCadastro="
+				+ dataHoraCadastro + ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

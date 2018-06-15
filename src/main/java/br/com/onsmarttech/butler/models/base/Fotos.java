@@ -54,6 +54,12 @@ public class Fotos {
 	public Fotos() {
 	}
 
+	@Override
+	public String toString() {
+		return "Fotos [id=" + id + ", path=" + path + ", dataHoraCadastro=" + dataHoraCadastro
+				+ ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

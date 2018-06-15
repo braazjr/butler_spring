@@ -51,6 +51,12 @@ public class Rota {
 		dataHoraModificacao = LocalDateTime.now();
 	}
 
+	@Override
+	public String toString() {
+		return "Rota [id=" + id + ", nome=" + nome + ", ativo=" + ativo + ", usuario=" + usuario + ", dataHoraCadastro="
+				+ dataHoraCadastro + ", dataHoraModificacao=" + dataHoraModificacao + "]";
+	}
+
 	public Integer getId() {
 		return id;
 	}

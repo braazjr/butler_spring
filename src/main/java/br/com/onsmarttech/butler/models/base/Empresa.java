@@ -111,6 +111,15 @@ public class Empresa {
 	public Empresa() {
 	}
 
+	@Override
+	public String toString() {
+		return "Empresa [id=" + id + ", cnpj=" + cnpj + ", nomeFantasia=" + nomeFantasia + ", nomeSocial=" + nomeSocial
+				+ ", ativo=" + ativo + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade + ", complemento="
+				+ complemento + ", email=" + email + ", estado=" + estado + ", numero=" + numero + ", rua=" + rua
+				+ ", telefone=" + telefone + ", construtoras=" + construtoras + ", dataHoraCadastro=" + dataHoraCadastro
+				+ ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

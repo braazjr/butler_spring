@@ -58,6 +58,12 @@ public class Evento {
 	public Evento() {
 	}
 
+	@Override
+	public String toString() {
+		return "Evento [id=" + id + ", titulo=" + titulo + ", conteudo=" + conteudo + ", dataHoraCadastro="
+				+ dataHoraCadastro + ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -59,7 +59,7 @@ public class Morador {
 	private TipoDocumento tipoDocumento;
 
 	@Enumerated(EnumType.STRING)
-//	@NotNull
+	// @NotNull
 	// @JoinColumn(name = "tipo_morador")
 	private TipoMorador tipoMorador;
 
@@ -90,6 +90,15 @@ public class Morador {
 	}
 
 	public Morador() {
+	}
+
+	@Override
+	public String toString() {
+		return "Morador [id=" + id + ", documento=" + documento + ", ativo=" + ativo + ", celular=" + celular
+				+ ", email=" + email + ", nome=" + nome + ", telefone=" + telefone + ", placaCarro=" + placaCarro
+				+ ", observacao=" + observacao + ", parentesco=" + parentesco + ", tipoDocumento=" + tipoDocumento
+				+ ", tipoMorador=" + tipoMorador + ", foto64=" + foto64 + ", dataHoraCadastro=" + dataHoraCadastro
+				+ ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
 	}
 
 	public Long getId() {
@@ -187,11 +196,11 @@ public class Morador {
 	public void setTipoMorador(TipoMorador tipoMorador) {
 		this.tipoMorador = tipoMorador;
 	}
-	
+
 	public String getFoto64() {
 		return foto64;
 	}
-	
+
 	public void setFoto64(String foto64) {
 		this.foto64 = foto64;
 	}

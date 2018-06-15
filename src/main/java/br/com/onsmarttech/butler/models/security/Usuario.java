@@ -36,6 +36,16 @@ public class Usuario {
 	@JoinColumn(name = "id_empresa")
 	private Empresa empresa;
 
+	public Usuario() {
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", login=" + login + ", primeiroNome=" + primeiroNome + ", ultimoNome="
+				+ ultimoNome + ", senha=" + senha + ", ativo=" + ativo + ", permissoes=" + permissoes + ", empresa="
+				+ empresa + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -63,7 +73,7 @@ public class Usuario {
 	public String getLogin() {
 		return login;
 	}
-	
+
 	public void setLogin(String login) {
 		this.login = login;
 	}

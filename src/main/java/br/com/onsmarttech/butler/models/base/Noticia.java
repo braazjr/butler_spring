@@ -58,6 +58,12 @@ public class Noticia {
 	public Noticia() {
 	}
 
+	@Override
+	public String toString() {
+		return "Noticia [id=" + id + ", titulo=" + titulo + ", conteudo=" + conteudo + ", dataHoraCadastro="
+				+ dataHoraCadastro + ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

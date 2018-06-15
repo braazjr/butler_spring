@@ -107,6 +107,15 @@ public class Condominio {
 	public Condominio() {
 	}
 
+	@Override
+	public String toString() {
+		return "Condominio [id=" + id + ", nome=" + nome + ", ativo=" + ativo + ", bairro=" + bairro + ", cep=" + cep
+				+ ", cidade=" + cidade + ", complemento=" + complemento + ", email=" + email + ", estado=" + estado
+				+ ", numero=" + numero + ", rua=" + rua + ", telefone=" + telefone + ", blocos=" + blocos
+				+ ", construtora=" + construtora + ", dataHoraCadastro=" + dataHoraCadastro + ", dataHoraModificacao="
+				+ dataHoraModificacao + ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -69,6 +69,13 @@ public class Bloco {
 	public Bloco() {
 	}
 
+	@Override
+	public String toString() {
+		return "Bloco [id=" + id + ", ativo=" + ativo + ", nome=" + nome + ", numero=" + numero + ", apartamentos="
+				+ apartamentos + ", condominio=" + condominio + ", dataHoraCadastro=" + dataHoraCadastro
+				+ ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

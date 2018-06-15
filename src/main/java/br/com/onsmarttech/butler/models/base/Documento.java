@@ -76,6 +76,13 @@ public class Documento {
 		this.apartamento = apto;
 	}
 
+	@Override
+	public String toString() {
+		return "Documento [id=" + id + ", nome=" + nome + ", path=" + path + ", dataHoraCadastro=" + dataHoraCadastro
+				+ ", dataHoraModificacao=" + dataHoraModificacao + ", apartamento=" + apartamento + ", usuario="
+				+ usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

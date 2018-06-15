@@ -118,6 +118,16 @@ public class Construtora {
 	public Construtora() {
 	}
 
+	@Override
+	public String toString() {
+		return "Construtora [id=" + id + ", cnpj=" + cnpj + ", nomeFantasia=" + nomeFantasia + ", nomeSocial="
+				+ nomeSocial + ", ativo=" + ativo + ", bairro=" + bairro + ", cep=" + cep + ", cidade=" + cidade
+				+ ", complemento=" + complemento + ", email=" + email + ", estado=" + estado + ", numero=" + numero
+				+ ", rua=" + rua + ", telefone=" + telefone + ", condominios=" + condominios + ", empresa=" + empresa
+				+ ", dataHoraCadastro=" + dataHoraCadastro + ", dataHoraModificacao=" + dataHoraModificacao
+				+ ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

@@ -45,6 +45,12 @@ public class Viagem {
 	public Viagem() {
 	}
 
+	@Override
+	public String toString() {
+		return "Viagem [id=" + id + ", rota=" + rota + ", usuario=" + usuario + ", data=" + data + ", horario="
+				+ horario + ", residentes=" + residentes + "]";
+	}
+
 	public Integer getId() {
 		return id;
 	}

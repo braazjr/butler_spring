@@ -10,6 +10,14 @@ public class Permissao {
 	private Long codigo;
 	private String descricao;
 
+	public Permissao() {
+	}
+
+	@Override
+	public String toString() {
+		return "Permissao [codigo=" + codigo + ", descricao=" + descricao + "]";
+	}
+
 	public Long getCodigo() {
 		return codigo;
 	}

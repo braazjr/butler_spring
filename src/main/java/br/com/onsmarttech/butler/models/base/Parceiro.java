@@ -59,6 +59,12 @@ public class Parceiro {
 	public Parceiro() {
 	}
 
+	@Override
+	public String toString() {
+		return "Parceiro [id=" + id + ", nome=" + nome + ", path=" + path + ", dataHoraCadastro=" + dataHoraCadastro
+				+ ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}

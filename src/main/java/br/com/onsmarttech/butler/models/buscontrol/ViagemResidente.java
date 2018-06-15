@@ -39,6 +39,12 @@ public class ViagemResidente {
 	public ViagemResidente() {
 	}
 
+	@Override
+	public String toString() {
+		return "ViagemResidente [id=" + id + ", viagem=" + viagem + ", morador=" + morador + ", horario=" + horario
+				+ "]";
+	}
+
 	public Integer getId() {
 		return id;
 	}

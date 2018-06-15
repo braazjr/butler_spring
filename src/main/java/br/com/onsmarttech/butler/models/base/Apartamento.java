@@ -17,6 +17,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
+import javax.persistence.SequenceGenerator;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -35,6 +36,7 @@ public class Apartamento {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@SequenceGenerator(name = "apartamento_id_seq")
 	private Long id;
 
 	@Column(length = 15)
@@ -49,7 +51,7 @@ public class Apartamento {
 	@NotNull
 	private Bloco bloco;
 
-	@ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@ManyToMany(cascade = { CascadeType.PERSIST })
 	@JoinTable(name = "apartamento_morador", inverseJoinColumns = @JoinColumn(name = "id_morador"), joinColumns = @JoinColumn(name = "id_apartamento"))
 	private List<Morador> moradores;
 
@@ -81,6 +83,13 @@ public class Apartamento {
 	}
 
 	public Apartamento() {
+	}
+
+	@Override
+	public String toString() {
+		return "Apartamento [id=" + id + ", numero=" + numero + ", ativo=" + ativo + ", numeroQuartos=" + numeroQuartos
+				+ ", bloco=" + bloco + ", moradores=" + moradores + ", documentos=" + documentos + ", dataHoraCadastro="
+				+ dataHoraCadastro + ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
 	}
 
 	public Long getId() {
