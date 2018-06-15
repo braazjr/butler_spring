@@ -58,6 +58,12 @@ public class Servico {
 	public Servico() {
 	}
 
+	@Override
+	public String toString() {
+		return "Servico [id=" + id + ", titulo=" + titulo + ", conteudo=" + conteudo + ", dataHoraCadastro="
+				+ dataHoraCadastro + ", dataHoraModificacao=" + dataHoraModificacao + ", usuario=" + usuario + "]";
+	}
+
 	public Long getId() {
 		return id;
 	}
