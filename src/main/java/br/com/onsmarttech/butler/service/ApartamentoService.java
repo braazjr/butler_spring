@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.onsmarttech.butler.models.base.Apartamento;
 import br.com.onsmarttech.butler.repositories.ApartamentoRepository;
+import br.com.onsmarttech.butler.util.LogUtil;
 
 @Service
 public class ApartamentoService {
@@ -36,7 +37,10 @@ public class ApartamentoService {
 	}
 
 	public Apartamento save(Apartamento apartamento) {
+		LogUtil.printTitulo("SALVANDO APARTAMENTO");
 		Apartamento apartamentoSalvo = repository.save(apartamento);
+
+		LogUtil.printMensagem("APARTAMENTO SALVO: " + apartamentoSalvo.toString());
 
 		if (apartamentoSalvo.getMoradores() != null && !apartamentoSalvo.getMoradores().isEmpty()) {
 			apartamentoSalvo.getMoradores().forEach(morador -> {
@@ -44,6 +48,8 @@ public class ApartamentoService {
 					String foto = morador.getFoto64();
 
 					if (foto != null && !foto.isEmpty()) {
+						LogUtil.printTitulo("SALVANDO FOTO DO MORADOR");
+
 						InputStream is = new ByteArrayInputStream(Base64.encodeBase64(foto.getBytes()));
 
 						BufferedImage image = ImageIO.read(is);
@@ -52,6 +58,8 @@ public class ApartamentoService {
 						ImageIO.write(image, "jpeg",
 								new File("C:\\Users\\ebj\\Documents\\GitHub\\butler_spring\\fotos\\" + morador.getId()
 										+ ".jpeg"));
+
+						LogUtil.printMensagem("FOTO SALVA!");
 					}
 				} catch (IOException e) {
 					e.printStackTrace();
